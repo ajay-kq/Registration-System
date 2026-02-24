@@ -3,17 +3,13 @@ const nodemailer = require("nodemailer");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
 
-// MongoDB Connection Cache
-let cachedDb = null;
+// MongoDB Connection Cache (reuse across invocations)
+let isConnected = false;
 
 async function connectToDatabase() {
-    if (cachedDb) return cachedDb;
-
-    cachedDb = await mongoose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    return cachedDb;
+    if (isConnected) return;
+    await mongoose.connect(process.env.MONGO_URI);
+    isConnected = true;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -26,19 +22,18 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);
 
-export default async function handler(req, res) {
-    // CORS Headers for Serverless
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+module.exports = async function handler(req, res) {
+    // CORS Headers
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
     }
 
-    if (req.method !== 'POST') {
+    if (req.method !== "POST") {
         return res.status(405).json({ message: "Method Not Allowed" });
     }
 
@@ -56,15 +51,13 @@ export default async function handler(req, res) {
         // 1. Save to MongoDB
         await User.create({ name, email, phone, registrationId: regId });
 
-        // 2. Save to Google Sheets (Async)
+        // 2. Save to Google Sheets (non-blocking)
         if (process.env.GOOGLE_SHEET_WEBHOOK) {
             axios.post(process.env.GOOGLE_SHEET_WEBHOOK, {
-                name,
-                email,
-                phone,
+                name, email, phone,
                 registrationId: regId,
                 date: new Date().toLocaleString()
-            }).catch(err => console.error("Google Sheets Logging Failed:", err.message));
+            }).catch(err => console.error("Google Sheets Failed:", err.message));
         }
 
         // 3. Send Email
@@ -83,7 +76,7 @@ export default async function handler(req, res) {
             html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
           <h2 style="color: #25D366;">Welcome, ${name}!</h2>
-          <p>You have successfully registered. Your Registration ID is: <b>${regId}</b></p>
+          <p>Your Registration ID: <b>${regId}</b></p>
           <div style="text-align: center; margin-top: 20px;">
             <a href="${process.env.WHATSAPP_LINK}" style="background: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Join WhatsApp Group</a>
           </div>
@@ -98,7 +91,7 @@ export default async function handler(req, res) {
         });
 
     } catch (error) {
-        console.error("error during registration:", error);
-        return res.status(500).json({ success: false, message: "Internal Server Error" });
+        console.error("Registration Error:", error);
+        return res.status(500).json({ success: false, message: "Internal Server Error: " + error.message });
     }
-}
+};
