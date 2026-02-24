@@ -1,55 +1,316 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration</title>
-<style>
-body { font-family: Arial; padding:20px; }
-input, button {
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-}
-button {
-  background:#25D366;
-  color:white;
-  border:none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Registration | Join Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Mobile-First Design System */
+        :root {
+            --primary: #25D366;
+            --secondary: #128C7E;
+            --accent: #34B7F1;
+            --bg: #0b141a;
+            --card-bg: #111b21;
+            --input-bg: #2a3942;
+            --text: #e9edef;
+            --text-dim: #8696a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 400px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        p.desc {
+            color: var(--text-dim);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            background: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: white;
+            font-size: 16px;
+            /* Prevents iOS zoom on focus */
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            background: var(--primary);
+            color: #0b141a;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: transform 0.1s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Success Page Overlay */
+        #success-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 32px;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 18px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 32px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            display: inline-block;
+        }
+
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Register Now</h2>
+    <div class="phone-mockup">
+        <header>
+            <div class="logo">✓</div>
+            <h1>Secure Register</h1>
+            <p class="desc">Join our community in less than a minute. Enter your details below.</p>
+        </header>
 
-<form id="form">
-  <input type="text" id="name" placeholder="Full Name" required />
-  <input type="email" id="email" placeholder="Email" required />
-  <input type="text" id="phone" placeholder="Phone Number" required />
-  <button type="submit">Submit</button>
-</form>
+        <form id="form">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Full Name" required autocomplete="name" />
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required autocomplete="email" />
+            </div>
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder="Phone Number" required autocomplete="tel" />
+            </div>
+            <button type="submit" id="submit-btn">
+                <span>Join Now</span>
+                <div class="loader" id="loader"></div>
+            </button>
+        </form>
+    </div>
 
-<script>
-document.getElementById("form").addEventListener("submit", async function(e){
-  e.preventDefault();
+    <!-- Full Screen Success Page -->
+    <div id="success-page">
+        <div class="success-icon">🎉</div>
+        <h2 style="font-size: 28px; margin-bottom: 12px;">Registration Confirmed!</h2>
+        <p style="color: var(--text-dim); line-height: 1.6;">Welcome to the family. Your unique ID is:<br><b
+                id="reg-id-display" style="color: var(--primary); font-size: 20px;"></b></p>
+        <p style="margin-top: 24px; font-size: 14px;">Redirecting to WhatsApp in 3 seconds...</p>
+        <a href="#" id="wa-link" class="whatsapp-btn">Join WhatsApp Group Now</a>
+    </div>
 
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value
-  };
+    <script>
+        // CONFIG - Change this to your Render URL after deployment
+        const API_BASE = "https://registration-system-ykrk.onrender.com";
 
-  const response = await fetch("YOUR_BACKEND_URL/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+        const form = document.getElementById("form");
+        const submitBtn = document.getElementById("submit-btn");
+        const loader = document.getElementById("loader");
+        const btnText = submitBtn.querySelector('span');
 
-  const result = await response.json();
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-  alert("Registration Successful! ID: " + result.regId);
-  window.location.href = "YOUR_WHATSAPP_GROUP_LINK";
-});
-</script>
+            // Set UI to loading
+            submitBtn.disabled = true;
+            loader.style.display = "block";
+            btnText.style.opacity = "0";
 
+            const payload = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    // Show success page
+                    document.getElementById("reg-id-display").textContent = data.regId;
+                    document.getElementById("wa-link").href = data.whatsappLink;
+                    document.getElementById("success-page").style.display = "flex";
+
+                    // Auto redirect after 3s
+                    setTimeout(() => {
+                        window.location.href = data.whatsappLink;
+                    }, 3000);
+                } else {
+                    alert("Error: " + data.message);
+                    resetUI();
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Connection failed. Please check your internet or server status.");
+                resetUI();
+            }
+        });
+
+        function resetUI() {
+            submitBtn.disabled = false;
+            loader.style.display = "none";
+            btnText.style.opacity = "1";
+        }
+    </script>
 </body>
+
 </html>
