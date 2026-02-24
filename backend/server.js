@@ -7,8 +7,13 @@ const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 
 const app = express();
-app.use(cors()); // In production, you can restrict this to your Vercel URL
+app.use(cors()); // Permissive for debugging Vercel-Render connection
 app.use(express.json());
+
+// Health Check Route
+app.get("/", (req, res) => {
+  res.send("Registration System Backend is Live!");
+});
 
 // Check required env vars
 const requiredEnv = ["MONGO_URI", "EMAIL", "EMAIL_PASS", "WHATSAPP_LINK", "GOOGLE_SHEET_WEBHOOK"];

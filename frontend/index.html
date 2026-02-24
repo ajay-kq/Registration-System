@@ -299,8 +299,8 @@
                     resetUI();
                 }
             } catch (err) {
-                console.error(err);
-                alert("Connection failed. Please check your internet or server status.");
+                console.error("Fetch Error:", err);
+                alert("Connection failed: " + err.message + "\n\nTip: If you just opened the site, the backend might be waking up (Render Free Tier takes ~30s). Please try again in a few moments.");
                 resetUI();
             }
         });
