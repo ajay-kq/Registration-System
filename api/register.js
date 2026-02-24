@@ -51,13 +51,20 @@ module.exports = async function handler(req, res) {
         // 1. Save to MongoDB
         await User.create({ name, email, phone, registrationId: regId });
 
-        // 2. Save to Google Sheets (non-blocking)
+        // 2. Save to Google Sheets (Awaited for debugging)
+        let sheetsStatus = "skipped (no webhook configured)";
         if (process.env.GOOGLE_SHEET_WEBHOOK) {
-            axios.post(process.env.GOOGLE_SHEET_WEBHOOK, {
-                name, email, phone,
-                registrationId: regId,
-                date: new Date().toLocaleString()
-            }).catch(err => console.error("Google Sheets Failed:", err.message));
+            try {
+                const sheetsRes = await axios.post(process.env.GOOGLE_SHEET_WEBHOOK, {
+                    name, email, phone,
+                    registrationId: regId,
+                    date: new Date().toLocaleString()
+                });
+                sheetsStatus = "success: " + JSON.stringify(sheetsRes.data);
+            } catch (sheetsErr) {
+                sheetsStatus = "error: " + sheetsErr.message;
+            }
+            console.log("Google Sheets Result:", sheetsStatus);
         }
 
         // 3. Send Email
@@ -87,7 +94,8 @@ module.exports = async function handler(req, res) {
         return res.status(200).json({
             success: true,
             regId,
-            whatsappLink: process.env.WHATSAPP_LINK
+            whatsappLink: process.env.WHATSAPP_LINK,
+            sheetsStatus
         });
 
     } catch (error) {
