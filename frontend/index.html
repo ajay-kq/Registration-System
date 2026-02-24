@@ -276,7 +276,11 @@
             };
 
             try {
-                const res = await fetch(`${API_BASE}/register`, {
+                const targetUrl = `${API_BASE}/register`;
+                console.log("Attempting FETCH to:", targetUrl);
+                console.log("Payload:", payload);
+
+                const res = await fetch(targetUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)

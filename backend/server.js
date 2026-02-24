@@ -7,7 +7,15 @@ const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 
 const app = express();
-app.use(cors()); // Permissive for debugging Vercel-Render connection
+
+// Robust CORS configuration
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.options("*", cors()); // Handle pre-flight for all routes
+
 app.use(express.json());
 
 // Health Check Route
@@ -39,6 +47,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 app.post("/register", async (req, res) => {
+  console.log("POST /register hit - Data:", req.body);
   try {
     const { name, email, phone } = req.body;
 
