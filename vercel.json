@@ -6,6 +6,10 @@
             "use": "@vercel/node"
         },
         {
+            "src": "api/reset.js",
+            "use": "@vercel/node"
+        },
+        {
             "src": "index.html",
             "use": "@vercel/static"
         }
@@ -14,6 +18,10 @@
         {
             "src": "/api/register",
             "dest": "/api/register.js"
+        },
+        {
+            "src": "/api/reset",
+            "dest": "/api/reset.js"
         },
         {
             "src": "/(.*)",
