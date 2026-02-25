@@ -4,19 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Registration | Join Now</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>RC Aquatics | Join Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Mobile-First Design System */
         :root {
-            --primary: #25D366;
-            --secondary: #128C7E;
-            --accent: #34B7F1;
-            --bg: #0b141a;
-            --card-bg: #111b21;
-            --input-bg: #2a3942;
-            --text: #e9edef;
-            --text-dim: #8696a0;
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --primary-glow: rgba(14, 165, 233, 0.25);
+            --secondary: #06b6d4;
+            --accent: #38bdf8;
+            --bg: #070d12;
+            --card-bg: #0d1b24;
+            --card-border: rgba(14, 165, 233, 0.15);
+            --input-bg: #111f2a;
+            --input-border: rgba(14, 165, 233, 0.12);
+            --input-border-focus: rgba(14, 165, 233, 0.6);
+            --text: #e2eef5;
+            --text-dim: #7a9db5;
+            --text-label: #38bdf8;
+            --success: #22c55e;
+            --error: #f87171;
         }
 
         * {
@@ -29,29 +36,36 @@
 
         body {
             background-color: var(--bg);
+            background-image:
+                radial-gradient(ellipse at 20% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
             color: var(--text);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 16px;
+            padding: 20px 16px;
         }
 
-        .phone-mockup {
+        .card {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             background: var(--card-bg);
-            border-radius: 28px;
-            padding: 32px 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px 28px;
+            box-shadow:
+                0 0 0 1px rgba(14, 165, 233, 0.05),
+                0 24px 48px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(14, 165, 233, 0.04);
             animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(32px);
             }
 
             to {
@@ -65,101 +79,182 @@
             margin-bottom: 32px;
         }
 
-        .logo {
-            width: 64px;
-            height: 64px;
-            background: var(--primary);
-            border-radius: 16px;
+        .logo-wrap {
+            width: 76px;
+            height: 76px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
-            font-size: 32px;
-            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+            margin: 0 auto 18px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+            overflow: hidden;
+        }
+
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .logo-wrap .logo-fallback {
+            font-size: 36px;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
+            letter-spacing: -0.3px;
             margin-bottom: 8px;
+            background: linear-gradient(135deg, #e2eef5 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         p.desc {
             color: var(--text-dim);
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 20px 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--text-label);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
 
-        input {
+        input,
+        textarea {
             background: var(--input-bg);
-            border: 1px solid transparent;
+            border: 1px solid var(--input-border);
             border-radius: 12px;
-            padding: 14px 16px;
-            color: white;
-            font-size: 16px;
-            /* Prevents iOS zoom on focus */
-            transition: border-color 0.2s;
+            padding: 13px 16px;
+            color: var(--text);
+            font-size: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
+            width: 100%;
+            resize: none;
         }
 
-        input:focus {
-            border-color: var(--primary);
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--text-dim);
+            font-size: 14px;
         }
 
-        button {
-            background: var(--primary);
-            color: #0b141a;
+        input:focus,
+        textarea:focus {
+            border-color: var(--input-border-focus);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             border: none;
             border-radius: 14px;
             padding: 16px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 12px;
-            transition: transform 0.1s, background 0.2s;
+            margin-top: 8px;
+            transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+            letter-spacing: 0.3px;
         }
 
-        button:active {
-            transform: scale(0.96);
+        button[type="submit"]:hover {
+            box-shadow: 0 12px 28px rgba(14, 165, 233, 0.4);
+            transform: translateY(-1px);
         }
 
-        button:disabled {
-            opacity: 0.7;
+        button[type="submit"]:active {
+            transform: scale(0.97);
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
+            transform: none;
         }
 
-        /* Success Page Overlay */
+        /* Inline error */
+        .form-error {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--error);
+            font-size: 13px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        /* Loader */
+        .loader {
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255, 255, 255, 0.25);
+            border-top: 2.5px solid white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success overlay */
         #success-page {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background: var(--bg);
+            background-image: radial-gradient(ellipse at 50% 40%, rgba(14, 165, 233, 0.1) 0%, transparent 60%);
             z-index: 1000;
             display: none;
             flex-direction: column;
@@ -167,11 +262,22 @@
             justify-content: center;
             text-align: center;
             padding: 32px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .success-icon {
-            font-size: 80px;
-            margin-bottom: 24px;
+            font-size: 72px;
+            margin-bottom: 20px;
             animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -185,58 +291,118 @@
             }
         }
 
+        .success-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .success-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #e2eef5 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reg-id-badge {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 10px;
+            padding: 10px 20px;
+            display: inline-block;
+            margin: 12px 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+
         .whatsapp-btn {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 18px 32px;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 18px;
-            margin-top: 32px;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-            display: inline-block;
+            font-size: 16px;
+            margin-top: 24px;
+            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.15s, box-shadow 0.2s;
         }
 
-        .loader {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(0, 0, 0, 0.1);
-            border-top: 3px solid #000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            display: none;
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(37, 211, 102, 0.4);
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .redirect-hint {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-dim);
         }
     </style>
 </head>
 
 <body>
 
-    <div class="phone-mockup">
+    <div class="card">
         <header>
-            <div class="logo">✓</div>
-            <h1>Secure Register</h1>
-            <p class="desc">Join our community in less than a minute. Enter your details below.</p>
+            <div class="logo-wrap">
+                <!-- Replace /logo.png with your actual logo file -->
+                <img src="/logo.png" alt="RC Aquatics Logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback" style="display:none;">🐠</span>
+            </div>
+            <h1>Welcome to RC Aquatics</h1>
+            <p class="desc">Join Our RC Aquatics Family community in less than a minute.<br>Enter your details below.
+            </p>
         </header>
 
+        <div id="form-error" class="form-error"></div>
+
         <form id="form">
+            <span class="section-label">Basic Info</span>
+
             <div class="input-group">
-                <input type="text" id="name" placeholder="Full Name" required autocomplete="name" />
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="e.g. Rahul Kumar" required autocomplete="name" />
             </div>
             <div class="input-group">
-                <input type="email" id="email" placeholder="Email Address" required autocomplete="email" />
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="e.g. rahul@gmail.com" required autocomplete="email" />
             </div>
             <div class="input-group">
-                <input type="tel" id="phone" placeholder="Phone Number" required autocomplete="tel" />
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="e.g. 9876543210" required autocomplete="tel" />
             </div>
+
+            <span class="section-label">Additional Details</span>
+
+            <div class="input-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" placeholder="e.g. Chennai" required />
+            </div>
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="e.g. 12, Gandhi Nagar, Tambaram" required />
+            </div>
+            <div class="input-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" placeholder="e.g. 600045" required inputmode="numeric" maxlength="10" />
+            </div>
+
             <button type="submit" id="submit-btn">
-                <span>Join Now</span>
+                <span id="btn-text">Join Now 🐠</span>
                 <div class="loader" id="loader"></div>
             </button>
         </form>
@@ -245,42 +411,62 @@
     <!-- Full Screen Success Page -->
     <div id="success-page">
         <div class="success-icon">🎉</div>
-        <h2 style="font-size: 28px; margin-bottom: 12px;">Registration Confirmed!</h2>
-        <p style="color: var(--text-dim); line-height: 1.6;">Welcome to the family. Your unique ID is:<br><b
-                id="reg-id-display" style="color: var(--primary); font-size: 20px;"></b></p>
-        <p style="margin-top: 24px; font-size: 14px;">Redirecting to WhatsApp in 3 seconds...</p>
-        <a href="#" id="wa-link" class="whatsapp-btn">Join WhatsApp Group Now</a>
+        <div class="success-card">
+            <h2>Registration Confirmed!</h2>
+            <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 4px;">Welcome to the RC Aquatics
+                Family!<br>Your Member ID is:</p>
+            <div class="reg-id-badge" id="reg-id-display"></div>
+            <p style="color: var(--text-dim); font-size: 13px;">Check your email for a confirmation with your ID
+                details.</p>
+            <a href="#" id="wa-link" class="whatsapp-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Join WhatsApp Group
+            </a>
+            <p class="redirect-hint">Redirecting automatically in <span id="countdown">3</span>s...</p>
+        </div>
     </div>
 
     <script>
-        // CONFIG - Using /api for Vercel Serverless
         const API_BASE = "/api";
 
         const form = document.getElementById("form");
         const submitBtn = document.getElementById("submit-btn");
         const loader = document.getElementById("loader");
-        const btnText = submitBtn.querySelector('span');
+        const btnText = document.getElementById("btn-text");
+        const formError = document.getElementById("form-error");
+
+        function showError(msg) {
+            formError.textContent = msg;
+            formError.style.display = "block";
+            formError.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function hideError() {
+            formError.style.display = "none";
+        }
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            hideError();
 
-            // Set UI to loading
             submitBtn.disabled = true;
             loader.style.display = "block";
             btnText.style.opacity = "0";
 
             const payload = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                location: document.getElementById("location").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                pincode: document.getElementById("pincode").value.trim()
             };
 
             try {
-                const targetUrl = `${API_BASE}/register`;
-                console.log("Attempting FETCH to:", targetUrl);
-                console.log("Payload:", payload);
-
-                const res = await fetch(targetUrl, {
+                const res = await fetch(`${API_BASE}/register`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
@@ -289,22 +475,37 @@
                 const data = await res.json();
 
                 if (data.success) {
-                    // Show success page
                     document.getElementById("reg-id-display").textContent = data.regId;
                     document.getElementById("wa-link").href = data.whatsappLink;
                     document.getElementById("success-page").style.display = "flex";
 
-                    // Auto redirect after 3s
-                    setTimeout(() => {
-                        window.location.href = data.whatsappLink;
-                    }, 3000);
+                    // Countdown and redirect
+                    let secs = 3;
+                    const tick = setInterval(() => {
+                        secs--;
+                        document.getElementById("countdown").textContent = secs;
+                        if (secs <= 0) {
+                            clearInterval(tick);
+                            window.location.href = data.whatsappLink;
+                        }
+                    }, 1000);
                 } else {
-                    alert("Error: " + data.message);
+                    if (data.duplicate) {
+                        if (data.field === "email") {
+                            showError("⚠️ This email address is already registered. Please use a different email.");
+                        } else if (data.field === "phone") {
+                            showError("⚠️ This phone number is already registered. Please use a different number.");
+                        } else {
+                            showError("⚠️ This email or phone number is already registered.");
+                        }
+                    } else {
+                        showError("❌ " + (data.message || "Something went wrong. Please try again."));
+                    }
                     resetUI();
                 }
             } catch (err) {
                 console.error("Fetch Error:", err);
-                alert("Connection failed: " + err.message + "\n\nTip: If you just opened the site, the backend might be waking up (Render Free Tier takes ~30s). Please try again in a few moments.");
+                showError("❌ Connection failed. Please check your internet and try again.");
                 resetUI();
             }
         });
