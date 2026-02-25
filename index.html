@@ -5,25 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RC Aquatics | Join Now</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --primary-glow: rgba(14, 165, 233, 0.25);
-            --secondary: #06b6d4;
-            --accent: #38bdf8;
-            --bg: #070d12;
-            --card-bg: #0d1b24;
-            --card-border: rgba(14, 165, 233, 0.15);
-            --input-bg: #111f2a;
-            --input-border: rgba(14, 165, 233, 0.12);
-            --input-border-focus: rgba(14, 165, 233, 0.6);
-            --text: #e2eef5;
-            --text-dim: #7a9db5;
-            --text-label: #38bdf8;
-            --success: #22c55e;
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --primary-light: #4ade80;
+            --primary-glow: rgba(34, 197, 94, 0.22);
+            --bg: #040f08;
+            --card-bg: #071a0d;
+            --card-border: rgba(34, 197, 94, 0.14);
+            --input-bg: #0c2416;
+            --input-border: rgba(34, 197, 94, 0.12);
+            --input-focus: rgba(34, 197, 94, 0.55);
+            --text: #e2f5e9;
+            --text-dim: #6fcf8a;
+            --text-label: #4ade80;
             --error: #f87171;
+            --section-line: rgba(34, 197, 94, 0.15);
         }
 
         * {
@@ -35,17 +34,28 @@
         }
 
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             background-image:
-                radial-gradient(ellipse at 20% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+                radial-gradient(ellipse at 15% 10%, rgba(34, 197, 94, 0.10) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 90%, rgba(22, 163, 74, 0.07) 0%, transparent 50%);
             color: var(--text);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             padding: 20px 16px;
+        }
+
+        /* Floating bubbles bg effect */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.03) 0%, transparent 25%);
+            pointer-events: none;
         }
 
         .card {
@@ -53,19 +63,33 @@
             max-width: 420px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 24px;
+            border-radius: 28px;
             padding: 36px 28px;
             box-shadow:
-                0 0 0 1px rgba(14, 165, 233, 0.05),
-                0 24px 48px rgba(0, 0, 0, 0.5),
-                0 0 80px rgba(14, 165, 233, 0.04);
-            animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+                0 0 0 1px rgba(34, 197, 94, 0.06),
+                0 24px 60px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(34, 197, 94, 0.05);
+            animation: slideUp 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Top green shimmer line */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 2px;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(32px);
+                transform: translateY(36px);
             }
 
             to {
@@ -74,23 +98,31 @@
             }
         }
 
+        /* ── Header ── */
         header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         .logo-wrap {
-            width: 76px;
-            height: 76px;
-            border-radius: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 18px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
-            border: 1px solid rgba(14, 165, 233, 0.25);
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(22, 163, 74, 0.10));
+            border: 1.5px solid rgba(34, 197, 94, 0.30);
+            box-shadow:
+                0 0 30px rgba(34, 197, 94, 0.18),
+                0 8px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .logo-wrap:hover {
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.28), 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .logo-wrap img {
@@ -100,16 +132,16 @@
             padding: 8px;
         }
 
-        .logo-wrap .logo-fallback {
-            font-size: 36px;
+        .logo-fallback {
+            font-size: 38px;
         }
 
         h1 {
             font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #e2eef5 0%, #38bdf8 100%);
+            background: linear-gradient(135deg, #e2f5e9 20%, #4ade80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -118,16 +150,17 @@
         p.desc {
             color: var(--text-dim);
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
+        /* ── Section divider ── */
         .section-label {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10.5px;
+            font-weight: 700;
             color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 20px 0 12px;
+            letter-spacing: 1.1px;
+            margin: 18px 0 10px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -137,76 +170,77 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: var(--card-border);
+            background: var(--section-line);
         }
 
+        /* ── Form ── */
         form {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         label {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10.5px;
+            font-weight: 700;
             color: var(--text-label);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.7px;
         }
 
-        input,
-        textarea {
+        input {
             background: var(--input-bg);
             border: 1px solid var(--input-border);
             border-radius: 12px;
             padding: 13px 16px;
             color: var(--text);
             font-size: 15px;
-            transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
             width: 100%;
-            resize: none;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
         }
 
-        input::placeholder,
-        textarea::placeholder {
-            color: var(--text-dim);
+        input::placeholder {
+            color: #3a6b49;
             font-size: 14px;
         }
 
-        input:focus,
-        textarea:focus {
-            border-color: var(--input-border-focus);
+        input:focus {
+            border-color: var(--input-focus);
+            background: #0e2d1a;
             box-shadow: 0 0 0 3px var(--primary-glow);
         }
 
+        /* ── Submit Button ── */
         button[type="submit"] {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             color: white;
             border: none;
             border-radius: 14px;
             padding: 16px;
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
-            margin-top: 8px;
-            transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+            margin-top: 10px;
+            letter-spacing: 0.3px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
-            letter-spacing: 0.3px;
+            box-shadow:
+                0 8px 24px rgba(34, 197, 94, 0.35),
+                0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.15s, box-shadow 0.2s;
         }
 
         button[type="submit"]:hover {
-            box-shadow: 0 12px 28px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 12px 32px rgba(34, 197, 94, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
             transform: translateY(-1px);
         }
 
@@ -220,7 +254,7 @@
             transform: none;
         }
 
-        /* Inline error */
+        /* ── Inline error banner ── */
         .form-error {
             background: rgba(248, 113, 113, 0.1);
             border: 1px solid rgba(248, 113, 113, 0.3);
@@ -232,7 +266,7 @@
             display: none;
         }
 
-        /* Loader */
+        /* ── Loader ── */
         .loader {
             width: 18px;
             height: 18px;
@@ -249,12 +283,12 @@
             }
         }
 
-        /* Success overlay */
+        /* ── Success overlay ── */
         #success-page {
             position: fixed;
             inset: 0;
             background: var(--bg);
-            background-image: radial-gradient(ellipse at 50% 40%, rgba(14, 165, 233, 0.1) 0%, transparent 60%);
+            background-image: radial-gradient(ellipse at 50% 40%, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
             z-index: 1000;
             display: none;
             flex-direction: column;
@@ -294,45 +328,58 @@
         .success-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 28px 32px;
+            border-radius: 24px;
+            padding: 28px 28px;
             max-width: 380px;
             width: 100%;
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 24px 56px rgba(0, 0, 0, 0.6), 0 0 60px rgba(34, 197, 94, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .success-card h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #e2eef5 0%, #38bdf8 100%);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #e2f5e9 0%, #4ade80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .reg-id-badge {
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 10px;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(22, 163, 74, 0.10));
+            border: 1.5px solid rgba(34, 197, 94, 0.35);
+            border-radius: 12px;
+            padding: 10px 24px;
             display: inline-block;
             margin: 12px 0;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-light);
             letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
         }
 
         .whatsapp-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 16px 32px;
+            padding: 15px 28px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 16px;
-            margin-top: 24px;
+            font-size: 15px;
+            margin-top: 20px;
             box-shadow: 0 10px 24px rgba(37, 211, 102, 0.3);
             display: inline-flex;
             align-items: center;
@@ -342,12 +389,12 @@
 
         .whatsapp-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 14px 30px rgba(37, 211, 102, 0.4);
         }
 
         .redirect-hint {
-            margin-top: 16px;
-            font-size: 13px;
+            margin-top: 14px;
+            font-size: 12px;
             color: var(--text-dim);
         }
     </style>
@@ -358,13 +405,12 @@
     <div class="card">
         <header>
             <div class="logo-wrap">
-                <!-- Replace /logo.png with your actual logo file -->
                 <img src="/logo.png" alt="RC Aquatics Logo"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
                 <span class="logo-fallback" style="display:none;">🐠</span>
             </div>
             <h1>Welcome to RC Aquatics</h1>
-            <p class="desc">Join Our RC Aquatics Family community in less than a minute.<br>Enter your details below.
+            <p class="desc">Join Our RC Aquatics Family community<br>in less than a minute. Enter your details below.
             </p>
         </header>
 
@@ -402,30 +448,30 @@
             </div>
 
             <button type="submit" id="submit-btn">
-                <span id="btn-text">Join Now 🐠</span>
+                <span id="btn-text">Join Now 🐟</span>
                 <div class="loader" id="loader"></div>
             </button>
         </form>
     </div>
 
-    <!-- Full Screen Success Page -->
+    <!-- Success overlay -->
     <div id="success-page">
         <div class="success-icon">🎉</div>
         <div class="success-card">
             <h2>Registration Confirmed!</h2>
-            <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 4px;">Welcome to the RC Aquatics
+            <p style="color:var(--text-dim);font-size:13px;margin-bottom:4px;">Welcome to the RC Aquatics
                 Family!<br>Your Member ID is:</p>
             <div class="reg-id-badge" id="reg-id-display"></div>
-            <p style="color: var(--text-dim); font-size: 13px;">Check your email for a confirmation with your ID
-                details.</p>
+            <p style="color:var(--text-dim);font-size:12px;">Check your email for a confirmation with your ID details.
+            </p>
             <a href="#" id="wa-link" class="whatsapp-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                     <path
                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 Join WhatsApp Group
             </a>
-            <p class="redirect-hint">Redirecting automatically in <span id="countdown">3</span>s...</p>
+            <p class="redirect-hint">Redirecting in <span id="countdown">3</span>s...</p>
         </div>
     </div>
 
@@ -443,10 +489,7 @@
             formError.style.display = "block";
             formError.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
-
-        function hideError() {
-            formError.style.display = "none";
-        }
+        function hideError() { formError.style.display = "none"; }
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -471,7 +514,6 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
-
                 const data = await res.json();
 
                 if (data.success) {
@@ -479,32 +521,28 @@
                     document.getElementById("wa-link").href = data.whatsappLink;
                     document.getElementById("success-page").style.display = "flex";
 
-                    // Countdown and redirect
                     let secs = 3;
                     const tick = setInterval(() => {
                         secs--;
                         document.getElementById("countdown").textContent = secs;
-                        if (secs <= 0) {
-                            clearInterval(tick);
-                            window.location.href = data.whatsappLink;
-                        }
+                        if (secs <= 0) { clearInterval(tick); window.location.href = data.whatsappLink; }
                     }, 1000);
-                } else {
-                    if (data.duplicate) {
-                        if (data.field === "email") {
-                            showError("⚠️ This email address is already registered. Please use a different email.");
-                        } else if (data.field === "phone") {
-                            showError("⚠️ This phone number is already registered. Please use a different number.");
-                        } else {
-                            showError("⚠️ This email or phone number is already registered.");
-                        }
+
+                } else if (data.duplicate) {
+                    if (data.field === "email") {
+                        showError("⚠️ This email address is already registered. Please use a different email.");
+                    } else if (data.field === "phone") {
+                        showError("⚠️ This phone number is already registered. Please use a different number.");
                     } else {
-                        showError("❌ " + (data.message || "Something went wrong. Please try again."));
+                        showError("⚠️ This email or phone number is already registered.");
                     }
+                    resetUI();
+                } else {
+                    showError("❌ " + (data.message || "Something went wrong. Please try again."));
                     resetUI();
                 }
             } catch (err) {
-                console.error("Fetch Error:", err);
+                console.error(err);
                 showError("❌ Connection failed. Please check your internet and try again.");
                 resetUI();
             }
