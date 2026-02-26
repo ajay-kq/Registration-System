@@ -4,442 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RC Aquatics | Join Now</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Registration | Join Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ══════════════════════════════
-           THEME TOKENS
-        ══════════════════════════════ */
-
-        /* GREEN */
-        [data-theme="green"],
-        :root {
-            --p: #22c55e;
-            --pd: #16a34a;
-            --pl: #4ade80;
-            --glow: rgba(34, 197, 94, .22);
-            --bg: #040f08;
-            --bg-g1: rgba(34, 197, 94, .09);
-            --bg-g2: rgba(22, 163, 74, .06);
-            --card: #071a0d;
-            --cb: rgba(34, 197, 94, .15);
-            --inp: #0c2416;
-            --ib: rgba(34, 197, 94, .13);
-            --if: rgba(34, 197, 94, .55);
-            --ih: #0e2d1a;
-            --tx: #e2f5e9;
-            --td: #6fcf8a;
-            --tl: #4ade80;
-            --ph: #3a6b49;
-            --glass-card: rgba(7, 26, 13, .85);
-        }
-
-        /* BLUE */
-        [data-theme="blue"] {
-            --p: #38bdf8;
-            --pd: #0ea5e9;
-            --pl: #7dd3fc;
-            --glow: rgba(56, 189, 248, .22);
-            --bg: #030c14;
-            --bg-g1: rgba(56, 189, 248, .09);
-            --bg-g2: rgba(14, 165, 233, .06);
-            --card: #061525;
-            --cb: rgba(56, 189, 248, .15);
-            --inp: #0a1e33;
-            --ib: rgba(56, 189, 248, .13);
-            --if: rgba(56, 189, 248, .55);
-            --ih: #0d2540;
-            --tx: #e0f2fe;
-            --td: #7dd3fc;
-            --tl: #38bdf8;
-            --ph: #2a5a7c;
-            --glass-card: rgba(6, 21, 37, .85);
-        }
-
-        /* DARK */
-        [data-theme="dark"] {
-            --p: #d4d4d4;
-            --pd: #a3a3a3;
-            --pl: #e5e5e5;
-            --glow: rgba(212, 212, 212, .13);
-            --bg: #080808;
-            --bg-g1: rgba(255, 255, 255, .03);
-            --bg-g2: rgba(255, 255, 255, .02);
-            --card: #111;
-            --cb: rgba(255, 255, 255, .09);
-            --inp: #1a1a1a;
-            --ib: rgba(255, 255, 255, .09);
-            --if: rgba(212, 212, 212, .4);
-            --ih: #1f1f1f;
-            --tx: #e5e5e5;
-            --td: #737373;
-            --tl: #a3a3a3;
-            --ph: #525252;
-            --glass-card: rgba(17, 17, 17, .85);
-        }
-
-        /* AUTO — light */
-        @media (prefers-color-scheme: light) {
-            [data-theme="auto"] {
-                --p: #16a34a;
-                --pd: #15803d;
-                --pl: #22c55e;
-                --glow: rgba(22, 163, 74, .18);
-                --bg: #f0fdf4;
-                --bg-g1: rgba(22, 163, 74, .07);
-                --bg-g2: rgba(22, 163, 74, .04);
-                --card: #fff;
-                --cb: rgba(22, 163, 74, .2);
-                --inp: #f0fdf4;
-                --ib: rgba(22, 163, 74, .2);
-                --if: rgba(22, 163, 74, .45);
-                --ih: #dcfce7;
-                --tx: #14532d;
-                --td: #166534;
-                --tl: #15803d;
-                --ph: #86efac;
-                --glass-card: rgba(255, 255, 255, .85);
-            }
-        }
-
-        /* AUTO — dark */
-        @media (prefers-color-scheme: dark) {
-            [data-theme="auto"] {
-                --p: #22c55e;
-                --pd: #16a34a;
-                --pl: #4ade80;
-                --glow: rgba(34, 197, 94, .22);
-                --bg: #040f08;
-                --bg-g1: rgba(34, 197, 94, .09);
-                --bg-g2: rgba(22, 163, 74, .06);
-                --card: #071a0d;
-                --cb: rgba(34, 197, 94, .15);
-                --inp: #0c2416;
-                --ib: rgba(34, 197, 94, .13);
-                --if: rgba(34, 197, 94, .55);
-                --ih: #0e2d1a;
-                --tx: #e2f5e9;
-                --td: #6fcf8a;
-                --tl: #4ade80;
-                --ph: #3a6b49;
-                --glass-card: rgba(7, 26, 13, .85);
-            }
-        }
-
-        /* ══════════════════════════════
-           GLASS OVERRIDE (any theme)
-        ══════════════════════════════ */
-        [data-glass="1"] body {
-            background: linear-gradient(135deg, #0a0f1e 0%, #0e1a12 35%, #100822 70%, #0b1520 100%) !important;
-            background-image: none !important;
-        }
-
-        [data-glass="1"] .card {
-            background: var(--glass-card) !important;
-            backdrop-filter: blur(24px) saturate(1.4);
-            -webkit-backdrop-filter: blur(24px) saturate(1.4);
-            border-color: rgba(255, 255, 255, .12) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255, 255, 255, .08) !important;
-        }
-
-        [data-glass="1"] input {
-            background: rgba(255, 255, 255, .07) !important;
-            backdrop-filter: blur(8px);
-        }
-
-        [data-glass="1"] .success-card {
-            background: var(--glass-card) !important;
-            backdrop-filter: blur(24px);
-        }
-
-        [data-glass="1"] #success-page {
-            background: linear-gradient(135deg, #0a0f1e, #0e1a12, #100822) !important;
-        }
-
-        /* ══════════════════════════════
-           BASE
-        ══════════════════════════════ */
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: var(--bg);
-            background-image: radial-gradient(ellipse at 15% 10%, var(--bg-g1) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 90%, var(--bg-g2) 0%, transparent 50%);
-            color: var(--tx);
-            min-height: 100vh;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 420px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px 16px;
-            transition: background .4s, color .4s;
+            overflow-y: auto;
+            max-height: 100vh;
         }
 
-        /* ── Theme bar ── */
-        .theme-bar {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 12px;
-            background: rgba(0, 0, 0, .3);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 50px;
-            padding: 4px 6px;
-            backdrop-filter: blur(12px);
-        }
-
-        .tbtn {
-            border: none;
-            border-radius: 50px;
-            padding: 5px 11px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            background: transparent;
-            color: rgba(255, 255, 255, .45);
-            letter-spacing: .3px;
-            transition: all .2s;
-        }
-
-        .tbtn:hover {
-            background: rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .9);
-        }
-
-        .tbtn.active {
-            background: var(--p);
-            color: #fff;
-            box-shadow: 0 2px 10px var(--glow);
-        }
-
-        /* Glass toggle pill */
-        .glass-toggle {
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 50px;
-            padding: 5px 11px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            background: transparent;
-            color: rgba(255, 255, 255, .45);
-            letter-spacing: .3px;
-            transition: all .2s;
-            margin-left: 4px;
-        }
-
-        .glass-toggle.on {
-            background: rgba(255, 255, 255, .15);
-            color: #fff;
-            border-color: rgba(255, 255, 255, .3);
-        }
-
-        /* ── Card ── */
         .card {
-            width: 100%;
-            max-width: 420px;
-            background: var(--card);
-            border: 1px solid var(--cb);
+            background: rgba(8, 16, 30, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.13);
             border-radius: 28px;
             padding: 36px 28px;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, .55), 0 0 80px var(--glow);
-            animation: slideUp .55s cubic-bezier(.2, .8, .2, 1);
-            position: relative;
-            overflow: hidden;
-            transition: background .4s, border-color .4s, box-shadow .4s;
+            width: 100%;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(37, 211, 102, 0.08);
+            animation: floatIn .8s cubic-bezier(.2, .8, .2, 1);
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--p), transparent);
-        }
-
-        @keyframes slideUp {
+        @keyframes floatIn {
             from {
                 opacity: 0;
-                transform: translateY(36px)
+                transform: translateY(30px) scale(.95)
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0)
+                transform: none
             }
         }
 
-        /* ── Header ── */
-        header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .logo-wrap {
-            width: 80px;
-            height: 80px;
-            border-radius: 22px;
+        .logo {
+            width: 68px;
+            height: 68px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
-            background: linear-gradient(135deg, var(--glow), transparent);
-            border: 1.5px solid color-mix(in srgb, var(--p) 40%, transparent);
-            box-shadow: 0 0 32px var(--glow), 0 8px 20px rgba(0, 0, 0, .3);
-            overflow: hidden;
-        }
-
-        .logo-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 8px;
-        }
-
-        .logo-fallback {
-            font-size: 38px;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, .45);
         }
 
         h1 {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 800;
-            letter-spacing: -.4px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--tx) 20%, var(--pl) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #e9edef;
+            margin-bottom: 6px;
+            text-align: center;
         }
 
-        p.desc {
-            color: var(--td);
+        .desc {
+            color: rgba(255, 255, 255, .45);
             font-size: 13px;
-            line-height: 1.65;
-        }
-
-        /* ── Form ── */
-        .section-label {
-            font-size: 10.5px;
-            font-weight: 700;
-            color: var(--td);
-            text-transform: uppercase;
-            letter-spacing: 1.1px;
-            margin: 18px 0 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: color-mix(in srgb, var(--p) 20%, transparent);
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 28px;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .ig {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+        .irow {
+            position: relative;
         }
 
-        label {
-            font-size: 10.5px;
-            font-weight: 700;
-            color: var(--tl);
-            text-transform: uppercase;
-            letter-spacing: .7px;
+        .ico {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
         }
 
         input {
-            background: var(--inp);
-            border: 1px solid var(--ib);
-            border-radius: 12px;
-            padding: 13px 16px;
-            color: var(--tx);
+            width: 100%;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            padding: 14px 16px 14px 44px;
+            color: white;
             font-size: 15px;
             outline: none;
-            width: 100%;
-            transition: border-color .2s, box-shadow .2s, background .4s;
+            transition: all .25s;
         }
 
         input::placeholder {
-            color: var(--ph);
-            font-size: 14px;
+            color: rgba(255, 255, 255, .3);
         }
 
         input:focus {
-            border-color: var(--if);
-            background: var(--ih);
-            box-shadow: 0 0 0 3px var(--glow);
+            border-color: rgba(37, 211, 102, .5);
+            background: rgba(37, 211, 102, .06);
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, .12);
         }
 
-        button[type="submit"] {
-            background: linear-gradient(135deg, var(--p), var(--pd));
-            color: #fff;
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, .2);
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .1);
+        }
+
+        button[type=submit] {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
             border: none;
             border-radius: 14px;
             padding: 16px;
-            font-size: 15px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 10px;
-            letter-spacing: .3px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 8px 24px var(--glow), 0 2px 8px rgba(0, 0, 0, .3);
-            transition: transform .15s, box-shadow .2s;
+            transition: all .2s;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, .35);
         }
 
-        button[type="submit"]:hover {
-            box-shadow: 0 12px 32px var(--glow);
-            transform: translateY(-1px);
+        button[type=submit]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, .55);
         }
 
-        button[type="submit"]:active {
+        button[type=submit]:active {
             transform: scale(.97);
         }
 
-        button[type="submit"]:disabled {
-            opacity: .6;
+        button[type=submit]:disabled {
+            opacity: .7;
             cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-error {
-            background: rgba(248, 113, 113, .1);
-            border: 1px solid rgba(248, 113, 113, .3);
-            border-radius: 10px;
-            padding: 12px 16px;
-            color: #f87171;
-            font-size: 13px;
-            line-height: 1.5;
-            display: none;
         }
 
         .loader {
             width: 18px;
             height: 18px;
-            border: 2.5px solid rgba(255, 255, 255, .25);
-            border-top: 2.5px solid #fff;
+            border: 2.5px solid rgba(255, 255, 255, .3);
+            border-top: 2.5px solid white;
             border-radius: 50%;
-            animation: spin .8s linear infinite;
+            animation: spin .7s linear infinite;
             display: none;
         }
 
@@ -449,12 +199,9 @@
             }
         }
 
-        /* ── Success ── */
         #success-page {
             position: fixed;
             inset: 0;
-            background: var(--bg);
-            background-image: radial-gradient(ellipse at 50% 40%, var(--bg-g1) 0%, transparent 60%);
             z-index: 1000;
             display: none;
             flex-direction: column;
@@ -462,292 +209,318 @@
             justify-content: center;
             text-align: center;
             padding: 32px;
-            animation: fIn .4s ease;
+            background: radial-gradient(ellipse at center, rgba(37, 211, 102, .15) 0%, rgba(0, 0, 0, .96) 80%);
+            backdrop-filter: blur(12px);
         }
 
-        @keyframes fIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        .success-icon {
-            font-size: 72px;
+        .sicon {
+            font-size: 80px;
             margin-bottom: 20px;
-            animation: sIn .5s cubic-bezier(.34, 1.56, .64, 1);
+            animation: popIn .6s cubic-bezier(.34, 1.56, .64, 1);
         }
 
-        @keyframes sIn {
+        @keyframes popIn {
             from {
-                transform: scale(0)
+                transform: scale(0) rotate(-180deg)
             }
 
             to {
-                transform: scale(1)
+                transform: scale(1) rotate(0)
             }
         }
 
-        .success-card {
-            background: var(--card);
-            border: 1px solid var(--cb);
-            border-radius: 24px;
-            padding: 28px;
-            max-width: 380px;
-            width: 100%;
-            box-shadow: 0 24px 56px rgba(0, 0, 0, .6), 0 0 60px var(--glow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .success-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--p), transparent);
-        }
-
-        .success-card h2 {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--tx) 0%, var(--pl) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .reg-id-badge {
-            background: linear-gradient(135deg, var(--glow), transparent);
-            border: 1.5px solid color-mix(in srgb, var(--p) 40%, transparent);
-            border-radius: 12px;
-            padding: 10px 24px;
-            display: inline-block;
-            margin: 12px 0;
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--pl);
-            letter-spacing: .5px;
-            box-shadow: 0 0 20px var(--glow);
-        }
-
-        .wa-btn {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #fff;
-            padding: 15px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            margin-top: 20px;
-            box-shadow: 0 10px 24px rgba(37, 211, 102, .3);
+        .wbtn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: transform .15s, box-shadow .2s;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            margin-top: 28px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, .4);
+            animation: glow 2s ease-in-out infinite;
         }
 
-        .wa-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(37, 211, 102, .4);
-        }
+        @keyframes glow {
 
-        .rhint {
-            margin-top: 14px;
-            font-size: 12px;
-            color: var(--td);
+            0%,
+            100% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, .4)
+            }
+
+            50% {
+                box-shadow: 0 12px 40px rgba(37, 211, 102, .7)
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- ── Theme Bar ── -->
-    <div class="theme-bar">
-        <button class="tbtn" data-t="green" onclick="setTheme('green')">🟢 Green</button>
-        <button class="tbtn" data-t="blue" onclick="setTheme('blue')">🔵 Blue</button>
-        <button class="tbtn" data-t="dark" onclick="setTheme('dark')">🌑 Dark</button>
-        <button class="tbtn" data-t="auto" onclick="setTheme('auto')">⚙️ Auto</button>
-        <button class="glass-toggle" id="glassBtn" onclick="toggleGlass()">🪟 Glass</button>
-    </div>
-
-    <div class="card">
-        <header>
-            <div class="logo-wrap">
-                <img src="/logo.png" alt="RC Aquatics Logo"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                <span class="logo-fallback" style="display:none;">🐠</span>
-            </div>
-            <h1>Welcome to RC Aquatics</h1>
-            <p class="desc">Join Our RC Aquatics Family community<br>in less than a minute. Enter your details below.
-            </p>
-        </header>
-
-        <div id="form-error" class="form-error"></div>
-
-        <form id="form">
-            <span class="section-label">Basic Info</span>
-            <div class="ig">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="e.g. Rahul Kumar" required autocomplete="name" />
-            </div>
-            <div class="ig">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="e.g. rahul@gmail.com" required autocomplete="email" />
-            </div>
-            <div class="ig">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="e.g. 9876543210" required autocomplete="tel" />
-            </div>
-
-            <span class="section-label">Additional Details</span>
-            <div class="ig">
-                <label for="location">Location</label>
-                <input type="text" id="location" placeholder="e.g. Chennai" required />
-            </div>
-            <div class="ig">
-                <label for="address">Address</label>
-                <input type="text" id="address" placeholder="e.g. 12, Gandhi Nagar, Tambaram" required />
-            </div>
-            <div class="ig">
-                <label for="pincode">Pincode</label>
-                <input type="text" id="pincode" placeholder="e.g. 600045" required inputmode="numeric" maxlength="10" />
-            </div>
-
-            <button type="submit" id="submit-btn">
-                <span id="btn-text">Join Now 🐟</span>
-                <div class="loader" id="loader"></div>
-            </button>
-        </form>
-    </div>
-
-    <!-- Success -->
-    <div id="success-page">
-        <div class="success-icon">🎉</div>
-        <div class="success-card">
-            <h2>Registration Confirmed!</h2>
-            <p style="color:var(--td);font-size:13px;margin-bottom:4px;">Welcome to the RC Aquatics Family!<br>Your
-                Member ID is:</p>
-            <div class="reg-id-badge" id="reg-id-display"></div>
-            <p style="color:var(--td);font-size:12px;">Check your email for confirmation details.</p>
-            <a href="#" id="wa-link" class="wa-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Join WhatsApp Group
-            </a>
-            <p class="rhint">Redirecting in <span id="countdown">3</span>s...</p>
+    <canvas id="bg"></canvas>
+    <div class="wrap">
+        <div class="card">
+            <div class="logo">✓</div>
+            <h1>Secure Register</h1>
+            <p class="desc">Join our community in less than a minute.<br>Enter your details below.</p>
+            <form id="form">
+                <div class="irow"><span class="ico">👤</span><input type="text" id="name" placeholder="Full Name"
+                        required autocomplete="name" /></div>
+                <div class="irow"><span class="ico">✉️</span><input type="email" id="email" placeholder="Email Address"
+                        required autocomplete="email" /></div>
+                <div class="irow"><span class="ico">📱</span><input type="tel" id="phone" placeholder="Phone Number"
+                        required autocomplete="tel" /></div>
+                <div class="divider">Secure &amp; Encrypted</div>
+                <button type="submit" id="submit-btn"><span>Join Now 🚀</span>
+                    <div class="loader" id="loader"></div>
+                </button>
+            </form>
         </div>
     </div>
-
+    <div id="success-page">
+        <div class="sicon">🎉</div>
+        <h2 style="font-size:28px;margin-bottom:12px;color:white;">Registration Confirmed!</h2>
+        <p style="color:rgba(255,255,255,.6);line-height:1.6;">Welcome to the family!<br>Your unique ID: <b
+                id="reg-id-display" style="color:#25D366;font-size:20px;"></b></p>
+        <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.35);">Redirecting to WhatsApp in 3 seconds...
+        </p>
+        <a href="#" id="wa-link" class="wbtn">🔗 Join WhatsApp Group</a>
+    </div>
     <script>
-        // ── Theme + Glass ──────────────────────────────────────────────────
-        const root = document.documentElement;
+        // ── CANVAS SETUP ──────────────────────────────────────
+        const C = document.getElementById('bg'), X = C.getContext('2d');
+        let W, H, MID, frame = 0, lastShoot = 0;
+        function resize() { W = C.width = window.innerWidth; H = C.height = window.innerHeight; MID = H * .5; initAll(); }
+        window.addEventListener('resize', resize);
 
-        function setTheme(t) {
-            root.setAttribute('data-theme', t);
-            localStorage.setItem('rcaq-theme', t);
-            document.querySelectorAll('.tbtn').forEach(b => b.classList.toggle('active', b.dataset.t === t));
+        // ── STARS ─────────────────────────────────────────────
+        let stars = [];
+        function mkStars() { stars = []; for (let i = 0; i < 250; i++)stars.push({ x: rnd(W), y: rnd(MID * .95), r: rnd(1.6) + .2, a: rnd(.8) + .2, sp: rnd(.025) + .005, ph: rnd(Math.PI * 2) }); }
+
+        // ── SHOOTING STARS ────────────────────────────────────
+        let shoots = [];
+        function spawnShoot() { if (shoots.length < 3) shoots.push({ x: rnd(W * .7), y: rnd(MID * .4), len: rnd(130) + 60, sp: rnd(9) + 6, a: 1, ang: Math.PI / 5 }); }
+
+        // ── BUBBLES ───────────────────────────────────────────
+        let bubs = [];
+        function mkBubs() { bubs = []; for (let i = 0; i < 28; i++)bubs.push({ x: rnd(W), y: MID + rnd(H - MID), r: rnd(6) + 2, sp: rnd(.9) + .25, wb: rnd(Math.PI * 2), a: rnd(.35) + .15 }); }
+
+        // ── PLANTS ────────────────────────────────────────────
+        let plants = [];
+        const plantCols = ['#1a6b1a', '#2d8a2d', '#0f5f0f', '#1e7a3a', '#228B22', '#2E8B57'];
+        function mkPlants() {
+            plants = [];
+            [.04, .09, .14, .19, .75, .81, .87, .92, .97].forEach(px => {
+                for (let s = 0; s < 3; s++)plants.push({ x: px * W + (rnd(30) - 15), h: rnd(90) + 55, sw: rnd(Math.PI * 2), ssp: rnd(.022) + .01, col: plantCols[rndI(plantCols.length)], lc: rndI(3) + 3 });
+            });
         }
 
-        function toggleGlass() {
-            const on = root.getAttribute('data-glass') === '1';
-            const next = on ? '0' : '1';
-            root.setAttribute('data-glass', next);
-            localStorage.setItem('rcaq-glass', next);
-            document.getElementById('glassBtn').classList.toggle('on', next === '1');
+        // ── FISH ──────────────────────────────────────────────
+        let fish = [];
+        function mkFish() {
+            fish = [
+                { t: 'nemo', x: -120, lane: .61, d: 1, sp: 1.3, sz: 40, fr: 0 },
+                { t: 'dory', x: W + 120, lane: .72, d: -1, sp: 1.7, sz: 44, fr: 0 },
+                { t: 'betta', x: -100, lane: .82, d: 1, sp: .9, sz: 36, fr: 0 },
+                { t: 'angel', x: W + 120, lane: .67, d: -1, sp: 1.1, sz: 46, fr: 0 },
+                { t: 'guppy', x: -80, lane: .76, d: 1, sp: 2.2, sz: 25, fr: Math.PI },
+                { t: 'guppy', x: W + 80, lane: .88, d: -1, sp: 2.5, sz: 22, fr: 0 },
+                { t: 'arowana', x: W + 160, lane: .57, d: -1, sp: 1.0, sz: 68, fr: 0 },
+                { t: 'flowhorn', x: -130, lane: .93, d: 1, sp: .75, sz: 54, fr: 1 },
+            ];
+        }
+        function initAll() { mkStars(); mkBubs(); mkPlants(); mkFish(); }
+
+        // ── HELPERS ───────────────────────────────────────────
+        function rnd(n) { return Math.random() * (n || 1); }
+        function rndI(n) { return Math.floor(Math.random() * n); }
+
+        // ── DRAW FISH ─────────────────────────────────────────
+        function drawFish(f, tw) {
+            const s = f.sz, dir = f.d;
+            X.save(); X.scale(dir, 1);
+            const t = f.t;
+            if (t === 'nemo') {
+                // Tail
+                X.beginPath(); X.moveTo(s * .6, -s * .4); X.lineTo(s * .95, 0); X.lineTo(s * .6, s * .4); X.closePath(); X.fillStyle = '#e65c00'; X.fill();
+                // Body
+                X.beginPath(); X.ellipse(0, 0, s * .58, s * .33, 0, 0, Math.PI * 2); X.fillStyle = '#ff6b00'; X.fill();
+                // Stripes
+                ['rgba(255,255,255,.85)'].forEach(c => { X.fillStyle = c;[-.05, -.33].forEach(ox => { X.beginPath(); X.ellipse(ox * s, 0, s * .075, s * .32, .1, 0, Math.PI * 2); X.fill(); }); });
+                eye(s * .44, s * .1, s * .1);
+            } else if (t === 'dory') {
+                X.beginPath(); X.moveTo(s * .55, -s * .48); X.lineTo(s * .9, 0); X.lineTo(s * .55, s * .48); X.closePath(); X.fillStyle = '#1565C0'; X.fill();
+                X.beginPath(); X.ellipse(0, 0, s * .56, s * .38, 0, 0, Math.PI * 2); X.fillStyle = '#1976D2'; X.fill();
+                X.beginPath(); X.ellipse(s * .2, s * .22, s * .5, s * .1, 0, 0, Math.PI * 2); X.fillStyle = '#FFD600'; X.fill();
+                fin(-s * .1, -s * .36, s * .1, -s * .58, s * .32, -s * .36, '#1565C0');
+                eye(s * .38, s * .1, s * .1);
+            } else if (t === 'betta') {
+                const tw2 = Math.sin(tw) * .3;
+                X.beginPath(); X.moveTo(s * .5, 0); X.quadraticCurveTo(s * .85 + tw2 * s, -s * .6, s * 1.1, -s * .7); X.quadraticCurveTo(s * 1.2, 0, s * 1.1, s * .7); X.quadraticCurveTo(s * .85 - tw2 * s, s * .6, s * .5, 0);
+                const tg = X.createLinearGradient(s * .5, 0, s * 1.2, 0); tg.addColorStop(0, '#7B1FA2'); tg.addColorStop(1, 'rgba(186,104,200,.35)'); X.fillStyle = tg; X.fill();
+                X.beginPath(); X.ellipse(0, 0, s * .5, s * .27, 0, 0, Math.PI * 2);
+                const bg = X.createLinearGradient(-s * .5, 0, s * .5, 0); bg.addColorStop(0, '#6A1B9A'); bg.addColorStop(.5, '#AB47BC'); bg.addColorStop(1, '#7B1FA2'); X.fillStyle = bg; X.fill();
+                fin(-s * .2, -s * .27, s * .08, -s * .54 + tw2 * s * .3, s * .33, -s * .27, 'rgba(186,104,200,.7)');
+                eye(s * .38, s * .07, s * .09);
+            } else if (t === 'angel') {
+                X.beginPath(); X.moveTo(s * .2, -s * .1); X.lineTo(s * .62, 0); X.lineTo(s * .2, s * .1); X.closePath(); X.fillStyle = '#F57F17'; X.fill();
+                X.beginPath(); X.moveTo(-s * .2, 0); X.quadraticCurveTo(-s * .05, -s * .55, s * .2, -s * .5); X.quadraticCurveTo(s * .35, -s * .2, s * .2, 0); X.quadraticCurveTo(s * .35, s * .2, s * .2, s * .5); X.quadraticCurveTo(-s * .05, s * .55, -s * .2, 0); X.closePath();
+                const ag = X.createLinearGradient(-s * .3, 0, s * .4, 0); ag.addColorStop(0, '#FFCA28'); ag.addColorStop(.5, '#FFB300'); ag.addColorStop(1, '#F57F17'); X.fillStyle = ag; X.fill();
+                X.strokeStyle = 'rgba(0,0,0,.2)'; X.lineWidth = 2;[-.05, .1].forEach(ox => { X.beginPath(); X.moveTo(ox * s, -s * .45); X.lineTo((ox + .05) * s, s * .45); X.stroke(); });
+                eye(s * .1, s * .12, s * .09);
+            } else if (t === 'guppy') {
+                const tw2 = Math.sin(tw) * .4;
+                X.beginPath(); X.moveTo(s * .5, 0); X.lineTo(s + tw2 * s * .5, -s * .6); X.lineTo(s * .8, 0); X.lineTo(s + tw2 * s * .5, s * .6); X.closePath();
+                X.fillStyle = ['#E91E63', '#9C27B0', '#FF5722', '#2196F3'][rndI(4) > 2 ? 1 : 0]; X.fill();
+                X.beginPath(); X.ellipse(0, 0, s * .5, s * .27, 0, 0, Math.PI * 2); X.fillStyle = '#FF9800'; X.fill();
+                eye(s * .33, s * .09, s * .1);
+            } else if (t === 'arowana') {
+                const tw2 = Math.sin(tw) * .14;
+                X.beginPath(); X.moveTo(-s * .65, -s * .11); X.bezierCurveTo(-s * .2, -s * .18 + tw2 * s, s * .2, s * .15 - tw2 * s, s * .65, -s * .08); X.lineTo(s * .65, s * .08); X.bezierCurveTo(s * .2, s * .15 + tw2 * s, -s * .2, -s * .18 - tw2 * s, -s * .65, s * .11); X.closePath();
+                const sg = X.createLinearGradient(-s * .7, 0, s * .7, 0); sg.addColorStop(0, '#B0BEC5'); sg.addColorStop(.4, '#ECEFF1'); sg.addColorStop(1, '#78909C'); X.fillStyle = sg; X.fill();
+                X.strokeStyle = 'rgba(100,150,200,.25)'; X.lineWidth = 1;
+                for (let i = -5; i < 6; i++) { X.beginPath(); X.arc(i * s * .11, 0, s * .11, Math.PI * .1, Math.PI * .9); X.stroke(); }
+                X.beginPath(); X.moveTo(s * .62, 0); X.lineTo(s * .98, -s * .22); X.lineTo(s * .98, s * .22); X.closePath(); X.fillStyle = '#78909C'; X.fill();
+                eye(s * .54, s * .05, s * .09);
+            } else if (t === 'flowhorn') {
+                X.beginPath(); X.moveTo(s * .55, 0); X.lineTo(s, -s * .44); X.lineTo(s * .8, 0); X.lineTo(s, s * .44); X.closePath(); X.fillStyle = '#E64A19'; X.fill();
+                X.beginPath(); X.ellipse(0, s * .05, s * .53, s * .37, 0, 0, Math.PI * 2);
+                const fg = X.createLinearGradient(-s * .5, 0, s * .5, 0); fg.addColorStop(0, '#D84315'); fg.addColorStop(.4, '#FF7043'); fg.addColorStop(1, '#BF360C'); X.fillStyle = fg; X.fill();
+                X.beginPath(); X.ellipse(-s * .37, -s * .27, s * .24, s * .21, -.5, 0, Math.PI * 2); X.fillStyle = '#FF5722'; X.fill();
+                X.fillStyle = 'rgba(30,136,229,.55)';[[-s * .1, -s * .1], [s * .1, s * .05], [-s * .2, s * .1], [s * .25, -s * .05]].forEach(([bx, by]) => { X.beginPath(); X.arc(bx, by, s * .07, 0, Math.PI * 2); X.fill(); });
+                fin(-s * .1, -s * .37, s * .2, -s * .63, s * .45, -s * .37, 'rgba(229,57,53,.65)');
+                eye(s * .42, s * .1, s * .1);
+            }
+            X.restore();
+
+            function eye(ex, ey, er) {
+                X.beginPath(); X.arc(-ex, -ey, er, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
+                X.beginPath(); X.arc(-ex, -ey, er * .55, 0, Math.PI * 2); X.fillStyle = '#111'; X.fill();
+            }
+            function fin(x1, y1, cx, cy, x2, y2, col) {
+                X.beginPath(); X.moveTo(x1, y1); X.quadraticCurveTo(cx, cy, x2, y2); X.fillStyle = col; X.fill();
+            }
         }
 
-        // Load saved prefs
-        (function () {
-            const t = localStorage.getItem('rcaq-theme') || 'green';
-            setTheme(t);
-            const g = localStorage.getItem('rcaq-glass') || '0';
-            root.setAttribute('data-glass', g);
-            if (g === '1') document.getElementById('glassBtn').classList.add('on');
-        })();
+        // ── ANIMATION LOOP ────────────────────────────────────
+        function draw(ts) {
+            requestAnimationFrame(draw);
+            X.clearRect(0, 0, W, H);
+            frame++;
 
-        // ── Form logic ─────────────────────────────────────────────────────
+            // SPACE
+            const sg = X.createLinearGradient(0, 0, 0, MID);
+            sg.addColorStop(0, '#01011a'); sg.addColorStop(.55, '#050a2e'); sg.addColorStop(1, '#0d1b50');
+            X.fillStyle = sg; X.fillRect(0, 0, W, MID);
+
+            // Nebulae
+            [[W * .2, MID * .3, 170, 'rgba(90,0,160,.09)'], [W * .72, MID * .5, 140, 'rgba(0,60,160,.1)'], [W * .48, MID * .12, 110, 'rgba(200,50,50,.06)']].forEach(([nx, ny, nr, nc]) => {
+                const ng = X.createRadialGradient(nx, ny, 0, nx, ny, nr); ng.addColorStop(0, nc); ng.addColorStop(1, 'transparent');
+                X.fillStyle = ng; X.fillRect(nx - nr, ny - nr, nr * 2, nr * 2);
+            });
+
+            // Moon
+            const mx = W * .82, my = MID * .2, mr = 38;
+            const mg2 = X.createRadialGradient(mx, my, mr, mx, my, mr * 3); mg2.addColorStop(0, 'rgba(255,240,180,.14)'); mg2.addColorStop(1, 'transparent');
+            X.fillStyle = mg2; X.beginPath(); X.arc(mx, my, mr * 3, 0, Math.PI * 2); X.fill();
+            const mg = X.createRadialGradient(mx - mr * .3, my - mr * .3, 0, mx, my, mr); mg.addColorStop(0, '#FFFDE7'); mg.addColorStop(1, '#F9A825');
+            X.beginPath(); X.arc(mx, my, mr, 0, Math.PI * 2); X.fillStyle = mg; X.fill();
+            X.fillStyle = 'rgba(0,0,0,.1)';[[mx + mr * .2, my - mr * .1, mr * .15], [mx - mr * .2, my + mr * .3, mr * .1]].forEach(([cx, cy, cr]) => { X.beginPath(); X.arc(cx, cy, cr, 0, Math.PI * 2); X.fill(); });
+
+            // Stars
+            stars.forEach(s => { s.ph += s.sp; const a = (Math.sin(s.ph) * .4 + .6) * s.a; X.beginPath(); X.arc(s.x, s.y, s.r, 0, Math.PI * 2); X.fillStyle = `rgba(255,255,255,${a})`; X.fill(); });
+
+            // Shooting stars
+            if (ts - lastShoot > 4200 + rnd(3000)) { spawnShoot(); lastShoot = ts; }
+            shoots = shoots.filter(s => s.a > 0);
+            shoots.forEach(s => {
+                const sg2 = X.createLinearGradient(s.x, s.y, s.x - s.len * Math.cos(s.ang), s.y + s.len * Math.sin(s.ang));
+                sg2.addColorStop(0, 'white'); sg2.addColorStop(1, 'transparent');
+                X.save(); X.globalAlpha = s.a; X.beginPath(); X.moveTo(s.x, s.y); X.lineTo(s.x + s.len * Math.cos(s.ang), s.y + s.len * Math.sin(s.ang)); X.strokeStyle = sg2; X.lineWidth = 2; X.stroke(); X.restore();
+                s.x += s.sp * Math.cos(s.ang); s.y += s.sp * Math.sin(s.ang); s.a -= .016;
+            });
+
+            // AQUARIUM
+            const aq = X.createLinearGradient(0, MID, 0, H);
+            aq.addColorStop(0, '#001533'); aq.addColorStop(.4, '#002050'); aq.addColorStop(.85, '#001840'); aq.addColorStop(1, '#000d1a');
+            X.fillStyle = aq; X.fillRect(0, MID, W, H - MID);
+
+            // Light rays
+            for (let i = 0; i < 5; i++) { const rx = W * (.08 + i * .2); const rg = X.createLinearGradient(rx, MID, rx + 60, H); rg.addColorStop(0, 'rgba(100,190,255,.05)'); rg.addColorStop(1, 'transparent'); X.beginPath(); X.moveTo(rx - 20, MID); X.lineTo(rx + 60, H); X.lineTo(rx + 100, H); X.lineTo(rx + 30, MID); X.fillStyle = rg; X.fill(); }
+
+            // Plants
+            plants.forEach(p => {
+                p.sw += p.ssp; const sway = Math.sin(p.sw) * 13;
+                X.save(); X.strokeStyle = p.col; X.lineWidth = 3;
+                X.beginPath(); X.moveTo(p.x, H - 22); X.quadraticCurveTo(p.x + sway * .5, H - p.h * .5, p.x + sway, H - p.h); X.stroke();
+                for (let i = 0; i < p.lc; i++) { const ty = H - 22 - (p.h / p.lc) * (i + 1); const tx = p.x + sway * ((i + 1) / p.lc); const ld = i % 2 === 0 ? 1 : -1; X.beginPath(); X.moveTo(tx, ty); X.quadraticCurveTo(tx + ld * 18, ty - 10, tx + ld * 12, ty - 22); X.quadraticCurveTo(tx + ld * 5, ty - 12, tx, ty); X.fillStyle = p.col; X.fill(); }
+                X.restore();
+            });
+
+            // Sand
+            const sand = X.createLinearGradient(0, H - 35, 0, H); sand.addColorStop(0, '#5D4037'); sand.addColorStop(.5, '#795548'); sand.addColorStop(1, '#4E342E');
+            X.fillStyle = sand; X.beginPath(); X.moveTo(0, H - 26);
+            for (let x = 0; x <= W; x += 20)X.lineTo(x, H - 26 + Math.sin(x * .1 + frame * .004) * 4);
+            X.lineTo(W, H); X.lineTo(0, H); X.closePath(); X.fill();
+
+            // Fish
+            fish.forEach(f => {
+                f.fr += .05; f.x += f.sp * f.d;
+                const fy = f.lane * H + Math.sin(f.fr * .7) * 10;
+                if (f.d === 1 && f.x > W + 200) { f.x = -160; f.lane = .55 + rnd(.4); }
+                else if (f.d === -1 && f.x < -200) { f.x = W + 160; f.lane = .55 + rnd(.4); }
+                X.save(); X.translate(f.x, fy); drawFish(f, f.fr); X.restore();
+            });
+
+            // Bubbles
+            bubs.forEach(b => {
+                b.y -= b.sp; b.wb += .04; b.x += Math.sin(b.wb) * .5;
+                if (b.y < MID) { b.y = H - 20; b.x = rnd(W); }
+                X.save(); X.globalAlpha = b.a; X.beginPath(); X.arc(b.x, b.y, b.r, 0, Math.PI * 2); X.strokeStyle = 'rgba(150,220,255,.6)'; X.lineWidth = 1; X.stroke();
+                X.beginPath(); X.arc(b.x - b.r * .3, b.y - b.r * .3, b.r * .3, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.4)'; X.fill();
+                X.restore();
+            });
+
+            // Water surface shimmer
+            X.save(); X.globalAlpha = .5; X.beginPath(); X.moveTo(0, MID);
+            for (let x = 0; x <= W; x += 8)X.lineTo(x, MID + Math.sin(x * .02 + frame * .03) * 4);
+            X.strokeStyle = 'rgba(150,220,255,.55)'; X.lineWidth = 2; X.stroke(); X.restore();
+
+            // Water edge glow
+            const wg = X.createLinearGradient(0, MID - 20, 0, MID + 20); wg.addColorStop(0, 'transparent'); wg.addColorStop(.5, 'rgba(100,200,255,.08)'); wg.addColorStop(1, 'transparent');
+            X.fillStyle = wg; X.fillRect(0, MID - 20, W, 40);
+        }
+
+        resize();
+        requestAnimationFrame(draw);
+
+        // ── FORM LOGIC ────────────────────────────────────────
         const API_BASE = "/api";
         const form = document.getElementById("form");
         const submitBtn = document.getElementById("submit-btn");
         const loader = document.getElementById("loader");
-        const btnText = document.getElementById("btn-text");
-        const formError = document.getElementById("form-error");
-
-        function showError(msg) {
-            formError.textContent = msg;
-            formError.style.display = "block";
-            formError.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
-        function hideError() { formError.style.display = "none"; }
+        const btnText = submitBtn.querySelector('span');
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
-            hideError();
-            submitBtn.disabled = true;
-            loader.style.display = "block";
-            btnText.style.opacity = "0";
-
-            const payload = {
-                name: document.getElementById("name").value.trim(),
-                email: document.getElementById("email").value.trim(),
-                phone: document.getElementById("phone").value.trim(),
-                location: document.getElementById("location").value.trim(),
-                address: document.getElementById("address").value.trim(),
-                pincode: document.getElementById("pincode").value.trim()
-            };
-
+            submitBtn.disabled = true; loader.style.display = "block"; btnText.style.opacity = "0";
+            const payload = { name: document.getElementById("name").value, email: document.getElementById("email").value, phone: document.getElementById("phone").value };
             try {
-                const res = await fetch(`${API_BASE}/register`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
+                const res = await fetch(`${API_BASE}/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
                 const data = await res.json();
-
                 if (data.success) {
                     document.getElementById("reg-id-display").textContent = data.regId;
                     document.getElementById("wa-link").href = data.whatsappLink;
                     document.getElementById("success-page").style.display = "flex";
-                    let secs = 3;
-                    const tick = setInterval(() => {
-                        secs--;
-                        document.getElementById("countdown").textContent = secs;
-                        if (secs <= 0) { clearInterval(tick); window.location.href = data.whatsappLink; }
-                    }, 1000);
-
-                } else if (data.duplicate) {
-                    showError(
-                        data.field === "email"
-                            ? "⚠️ This email address is already registered. Please use a different email."
-                            : data.field === "phone"
-                                ? "⚠️ This phone number is already registered. Please use a different number."
-                                : "⚠️ This email or phone number is already registered."
-                    );
-                    resetUI();
-                } else {
-                    showError("❌ " + (data.message || "Something went wrong. Please try again."));
-                    resetUI();
-                }
-            } catch (err) {
-                showError("❌ Connection failed. Please check your internet and try again.");
-                resetUI();
-            }
+                    setTimeout(() => { window.location.href = data.whatsappLink; }, 3000);
+                } else { alert("Error: " + data.message); resetUI(); }
+            } catch (err) { alert("Connection failed: " + err.message); resetUI(); }
         });
 
-        function resetUI() {
-            submitBtn.disabled = false;
-            loader.style.display = "none";
-            btnText.style.opacity = "1";
-        }
+        function resetUI() { submitBtn.disabled = false; loader.style.display = "none"; btnText.style.opacity = "1"; }
     </script>
 </body>
 
