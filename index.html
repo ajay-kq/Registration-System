@@ -1262,8 +1262,11 @@
                 X.globalAlpha = 1;
             }
 
-            // Sun (day) / Moon (night)
-            const mx = W * .82, my = MID * .2, mr = 38;
+            // Sun (day) / Moon (night) - Opposite sides
+            // DT=1 (Day) -> Sun is at W*0.82. DT=0 (Night) -> Moon is at W*0.18
+            const mx = lerp(W * .18, W * .82, DT);
+            const my = MID * .2, mr = 38;
+
             if (DT > .05) { // Sun
                 const sg2 = X.createRadialGradient(mx, my, 0, mx, my, mr * 4); sg2.addColorStop(0, `rgba(255,220,50,${DT * .18})`); sg2.addColorStop(1, 'transparent'); X.fillStyle = sg2; X.fillRect(mx - mr * 4, my - mr * 4, mr * 8, mr * 8);
                 const sm = X.createRadialGradient(mx - mr * .3, my - mr * .3, 0, mx, my, mr); sm.addColorStop(0, '#FFF9C4'); sm.addColorStop(1, '#FFD600'); X.beginPath(); X.arc(mx, my, mr, 0, Math.PI * 2); X.fillStyle = sm; X.fill();
