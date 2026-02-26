@@ -419,6 +419,91 @@
         .nemo-bubble.show {
             opacity: 1
         }
+
+        /* ── MOBILE OPTIMIZATIONS (to show more of the aquarium) ── */
+        @media (max-width: 480px) {
+            .wrap {
+                padding: 10px;
+                max-width: 95vw;
+            }
+
+            .card {
+                padding: 22px 18px 18px;
+                border-radius: 20px;
+            }
+
+            .card::before {
+                border-radius: 20px 20px 60% 60% / 20px 20px 16px 16px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                border-radius: 14px;
+                margin-bottom: 4px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .desc {
+                font-size: 11px;
+                margin-bottom: 16px;
+                line-height: 1.4;
+            }
+
+            form {
+                gap: 8px;
+            }
+
+            .row2 {
+                gap: 8px;
+            }
+
+            input,
+            select {
+                padding: 11px 12px 11px 36px;
+                font-size: 13px;
+                border-radius: 12px;
+            }
+
+            .ico {
+                font-size: 14px;
+                left: 12px;
+            }
+
+            .ilabel {
+                font-size: 11px;
+                left: 36px;
+            }
+
+            .section-label {
+                font-size: 10px;
+                margin-top: 2px;
+            }
+
+            button[type=submit] {
+                padding: 12px;
+                font-size: 15px;
+                border-radius: 12px;
+            }
+
+            button[type=submit] span:last-child {
+                font-size: 16px !important;
+            }
+
+            .terms {
+                font-size: 10px;
+            }
+
+            .nemo-bubble {
+                font-size: 12px;
+                padding: 6px 14px;
+                bottom: 50%;
+            }
+        }
     </style>
 </head>
 
