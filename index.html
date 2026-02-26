@@ -542,6 +542,19 @@
                 padding: 6px 12px;
             }
         }
+
+        /* ── LANDSCAPE / SHORT SCREEN FIX ── */
+        @media (max-height: 550px) {
+            body {
+                align-items: flex-start;
+                padding: 16px 0;
+            }
+
+            .wrap {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
     </style>
 </head>
 
@@ -1699,7 +1712,7 @@
             } else {
                 // Hide form
                 wrap.classList.add('hidden-form');
-                btn.innerHTML = '📝 Show Form';
+                btn.innerHTML = '📝 Join Us';
                 // Auto show after 42 seconds
                 if (autoShowConfig) clearTimeout(autoShowConfig);
                 autoShowConfig = setTimeout(() => {
