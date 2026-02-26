@@ -420,6 +420,38 @@
             opacity: 1
         }
 
+        #hide-toggle {
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            z-index: 100;
+            background: rgba(0, 30, 80, .7);
+            border: 1px solid rgba(100, 200, 255, .3);
+            color: rgba(200, 240, 255, .9);
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all .3s
+        }
+
+        #hide-toggle:hover {
+            background: rgba(0, 60, 140, .8)
+        }
+
+        /* Slide card out of view */
+        .wrap {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s;
+        }
+
+        .wrap.hidden-form {
+            transform: translateY(120vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* ── MOBILE OPTIMIZATIONS (to show more of the aquarium) ── */
         @media (max-width: 480px) {
             .wrap {
@@ -503,14 +535,21 @@
                 padding: 6px 14px;
                 bottom: 50%;
             }
+
+            #hide-toggle,
+            #dn-toggle {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
 
 <body>
     <canvas id="bg"></canvas>
+    <button id="hide-toggle" onclick="toggleFormHide()">👁️ Watch Fish</button>
     <button id="dn-toggle" onclick="toggleDay()">☀️ Day</button>
-    <div class="wrap">
+    <div class="wrap" id="form-wrap">
         <div class="card">
             <div class="logo">🐠</div>
             <h1>Welcome to RC Aquatics</h1>
@@ -1646,6 +1685,29 @@
 
         // Nemo greeting on name field focus
         document.getElementById('name').addEventListener('focus', triggerNemoGreet);
+
+        // ── HIDE FORM LOGIC (Peek at aquarium) ──
+        let autoShowConfig = null;
+        function toggleFormHide() {
+            const wrap = document.getElementById('form-wrap');
+            const btn = document.getElementById('hide-toggle');
+            if (wrap.classList.contains('hidden-form')) {
+                // Show form
+                wrap.classList.remove('hidden-form');
+                btn.innerHTML = '👁️ Watch Fish';
+                if (autoShowConfig) clearTimeout(autoShowConfig);
+            } else {
+                // Hide form
+                wrap.classList.add('hidden-form');
+                btn.innerHTML = '📝 Show Form';
+                // Auto show after 42 seconds
+                if (autoShowConfig) clearTimeout(autoShowConfig);
+                autoShowConfig = setTimeout(() => {
+                    wrap.classList.remove('hidden-form');
+                    btn.innerHTML = '👁️ Watch Fish';
+                }, 42000);
+            }
+        }
 
         // ── PEEK-A-BOO: canvas click hides greeter fish, mousemove reveals ──
         let lastPeekAct = 0;
