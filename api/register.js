@@ -123,9 +123,9 @@ async function postToSheets({ sNo, date, time, registrationId, name, email, phon
     const url = process.env.GOOGLE_SHEET_WEBHOOK;
     let r;
     try {
-      r = await axios.post(url, body, { headers: { "Content-Type": "application/json" }, maxRedirects: 0, validateStatus: s => s < 400 });
+      r = await axios.post(url, body, { headers: { "Content-Type": "application/json" }, maxRedirects: 0, validateStatus: s => s >= 200 && s < 300 });
     } catch (re) {
-      if (re.response && re.response.status === 302) {
+      if (re.response && (re.response.status === 302 || re.response.status === 303)) {
         r = await axios.post(re.response.headers.location, body, { headers: { "Content-Type": "application/json" }, maxRedirects: 5 });
       } else throw re;
     }
