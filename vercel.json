@@ -23,6 +23,10 @@
                     "value": "max-age=63072000; includeSubDomains; preload"
                 },
                 {
+                    "key": "Cache-Control",
+                    "value": "s-maxage=0, no-cache, no-store, must-revalidate"
+                },
+                {
                     "key": "X-Content-Type-Options",
                     "value": "nosniff"
                 },
