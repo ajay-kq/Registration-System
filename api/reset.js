@@ -8,9 +8,21 @@ async function connectToDatabase() {
 }
 
 module.exports = async function handler(req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    // Set CORS and Security headers
+    const allowedOrigins = ['https://rsaquatics-join-self.vercel.app', 'https://registration-system-self.vercel.app'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+    } else {
+        res.setHeader("Access-Control-Allow-Origin", "https://rsaquatics-join-self.vercel.app"); // Fallback to new origin
+    }
+
     res.setHeader("Access-Control-Allow-Methods", "POST,OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("X-XSS-Protection", "1; mode=block");
+    res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
 
     if (req.method === "OPTIONS") return res.status(200).end();
     if (req.method !== "POST") return res.status(405).json({ message: "Method Not Allowed" });

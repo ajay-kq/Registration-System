@@ -443,11 +443,10 @@
 
         /* Slide card out of view */
         .wrap {
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s;
+            transition: opacity 2s ease-in-out;
         }
 
         .wrap.hidden-form {
-            transform: translateY(120vh);
             opacity: 0;
             pointer-events: none;
         }
@@ -551,8 +550,9 @@
             }
 
             .wrap {
-                max-height: none;
-                overflow-y: visible;
+                max-height: calc(100vh - 32px);
+                overflow-y: auto;
+                padding-bottom: 30px;
             }
         }
     </style>
@@ -560,9 +560,9 @@
 
 <body>
     <canvas id="bg"></canvas>
-    <button id="hide-toggle" onclick="toggleFormHide()">👁️ Watch Fish</button>
+    <button id="hide-toggle" onclick="toggleFormHide()">� Join Us</button>
     <button id="dn-toggle" onclick="toggleDay()">☀️ Day</button>
-    <div class="wrap" id="form-wrap">
+    <div class="wrap hidden-form" id="form-wrap">
         <div class="card">
             <div class="logo">🐠</div>
             <h1>Welcome to RC Aquatics</h1>
@@ -589,6 +589,10 @@
                     <div class="loader" id="loader"></div>
                 </button>
                 <p class="terms">By registering you agree to our Terms &amp; Privacy Policy.</p>
+                <div
+                    style="font-size: 10px; color: rgba(150, 210, 255, 0.5); text-align: center; margin-top: 4px; letter-spacing: 0.5px;">
+                    &copy; 2026 RC Aquatics. All Rights Reserved.
+                </div>
             </form>
         </div>
     </div>
@@ -711,6 +715,7 @@
             });
             // Additional center-bottom plant clusters
             [.3, .38, .45, .5, .55, .62, .69].forEach(px => {
+                if (px >= .45 && px <= .55) return; // Reduce density in the center
                 for (let s = 0; s < 2; s++) {
                     plants.push({ x: px * W + (rnd(24) - 12), h: rnd(80) + 50, sw: rnd(Math.PI * 2), ssp: rnd(.018) + .008, col: PC[rndI(PC.length)], lc: rndI(2) + 2 });
                 }
@@ -740,41 +745,42 @@
             ['#D84315', '#FF7043', '#BF360C'], // classic red-orange
             ['#6A1B9A', '#AB47BC', '#4A148C'], // purple
             ['#0288D1', '#29B6F6', '#01579B'], // blue
-            ['#2E7D32', '#66BB6A', '#1B5E20'], // green
+            ['#D50000', '#FF1744', '#B71C1C'], // bright red (attractive)
             ['#F57F17', '#FFCA28', '#E65100'], // gold
         ];
         function mkFish() {
             fish = [
                 // Left greeter: Nemo — starts from LEFT edge, swims to center
-                { t: 'nemo', x: -80, lane: .72, d: 1, sp: 1.4, sz: 56, fr: 0, greeter: true, gx: W * .33, gy: .76, gside: 1, expr: 'hi' },
+                { t: 'nemo', x: -80, lane: .72, d: 1, sp: 0.8, sz: 56, fr: 0, greeter: true, gx: W * .33, gy: .76, gside: 1, expr: 'hi' },
                 // Right greeter: Tang — starts from RIGHT edge, swims to center
-                { t: 'tang', x: W + 80, lane: .72, d: -1, sp: 1.4, sz: 56, fr: 0, greeter: true, gx: W * .67, gy: .76, gside: -1, expr: 'smile' },
+                { t: 'tang', x: W + 80, lane: .72, d: -1, sp: 0.8, sz: 56, fr: 0, greeter: true, gx: W * .67, gy: .76, gside: -1, expr: 'smile' },
                 // Regular swimmers
-                { t: 'nemo', x: -120, lane: .62, d: 1, sp: 1.5, sz: 50, fr: 0 },
-                { t: 'dory', x: W + 120, lane: .70, d: -1, sp: 1.8, sz: 58, fr: 0 },
-                { t: 'betta', x: -100, lane: .82, d: 1, sp: 1.0, sz: 48, fr: 0 },
-                { t: 'angel', x: W + 120, lane: .67, d: -1, sp: 1.2, sz: 60, fr: 0 },
-                { t: 'angel-bw', x: -110, lane: .63, d: 1, sp: 1.0, sz: 58, fr: 0 },
-                { t: 'guppy', x: -80, lane: .58, d: 1, sp: 2.3, sz: 34, fr: 0 },
-                { t: 'guppy', x: W + 80, lane: .87, d: -1, sp: 2.6, sz: 30, fr: 0 },
-                { t: 'guppy', x: -60, lane: .74, d: 1, sp: 1.9, sz: 36, fr: 0 },
+                { t: 'nemo', x: -120, lane: .62, d: 1, sp: 0.9, sz: 50, fr: 0 },
+                { t: 'dory', x: W + 120, lane: .70, d: -1, sp: 1.1, sz: 58, fr: 0 },
+                { t: 'betta', x: -100, lane: .82, d: 1, sp: 1.3, sz: 48, fr: 0 },
+                { t: 'angel', x: W + 120, lane: .67, d: -1, sp: 0.7, sz: 60, fr: 0 },
+                { t: 'angel-bw', x: -110, lane: .63, d: 1, sp: 0.6, sz: 58, fr: 0 },
+                { t: 'guppy', x: -80, lane: .58, d: 1, sp: 1.4, sz: 34, fr: 0 },
+                { t: 'guppy', x: W + 80, lane: .87, d: -1, sp: 1.6, sz: 30, fr: 0 },
+                { t: 'guppy', x: -60, lane: .74, d: 1, sp: 1.1, sz: 36, fr: 0 },
                 { t: 'arowana', x: W + 160, lane: .60, d: -1, sp: 1.1, sz: 88, fr: 0 },
-                { t: 'flowhorn', x: -130, lane: .92, d: 1, sp: .8, sz: 70, fr: 0, ci: 0 },
-                { t: 'flowhorn', x: W + 130, lane: .84, d: -1, sp: .9, sz: 65, fr: 0, ci: 1 },
-                { t: 'flowhorn', x: -100, lane: .68, d: 1, sp: .7, sz: 60, fr: 0, ci: 2 },
-                { t: 'tang', x: -90, lane: .65, d: 1, sp: 1.5, sz: 54, fr: 0 },
-                { t: 'tang', x: W + 90, lane: .85, d: -1, sp: 1.6, sz: 50, fr: 0 },
-                { t: 'nemo', x: W + 100, lane: .78, d: -1, sp: 1.3, sz: 50, fr: 0 },
-                { t: 'shark', x: W + 220, lane: .57, d: -1, sp: 1.6, sz: 80, fr: 0 },
-                { t: 'shark', x: -220, lane: .64, d: 1, sp: 1.3, sz: 70, fr: rnd(Math.PI) },
+                { t: 'flowhorn', x: -130, lane: .92, d: 1, sp: 0.5, sz: 70, fr: 0, ci: 0 },
+                { t: 'flowhorn', x: W + 130, lane: .84, d: -1, sp: 0.5, sz: 65, fr: 0, ci: 1 },
+                { t: 'flowhorn', x: -100, lane: .68, d: 1, sp: 0.4, sz: 60, fr: 0, ci: 2 },
+                { t: 'flowhorn', x: W + 180, lane: .75, d: -1, sp: 0.6, sz: 85, fr: 0, ci: 3 }, // New red flowhorn with huge hump
+                { t: 'tang', x: -90, lane: .65, d: 1, sp: 0.9, sz: 54, fr: 0 },
+                { t: 'nemo', x: W + 100, lane: .78, d: -1, sp: 0.8, sz: 50, fr: 0 },
+                { t: 'shark', x: -220, lane: .64, d: 1, sp: 0.8, sz: 70, fr: rnd(Math.PI) },
                 // Cave fish — swim through center arch area
-                { t: 'guppy', x: W * .3, lane: .91, d: 1, sp: 1.6, sz: 26, fr: 0, cave: true, caveX: W * .5, caveW: 160 },
-                { t: 'nemo', x: W * .55, lane: .88, d: -1, sp: 1.4, sz: 28, fr: rnd(3), cave: true, caveX: W * .5, caveW: 160 },
-                { t: 'dory', x: W * .45, lane: .93, d: 1, sp: 1.2, sz: 30, fr: rnd(3), cave: true, caveX: W * .5, caveW: 160 },
+                { t: 'guppy', x: W * .3, lane: .91, d: 1, sp: 1.3, sz: 26, fr: 0, cave: true, caveX: W * .5, caveW: 160 },
+                { t: 'nemo', x: W * .55, lane: .88, d: -1, sp: 0.8, sz: 28, fr: rnd(3), cave: true, caveX: W * .5, caveW: 160 },
+                { t: 'dory', x: W * .45, lane: .93, d: 1, sp: 0.7, sz: 30, fr: rnd(3), cave: true, caveX: W * .5, caveW: 160 },
                 // Stone arch cave fish (left side, x:0.06, 145px wide)
-                { t: 'guppy', x: W * .02, lane: .88, d: 1, sp: 1.3, sz: 22, fr: rnd(3), cave: true, caveX: W * .06, caveW: 128 },
-                { t: 'nemo', x: W * .1, lane: .91, d: -1, sp: 1.1, sz: 24, fr: rnd(3), cave: true, caveX: W * .06, caveW: 128 },
-                { t: 'betta', x: W * .04, lane: .93, d: 1, sp: .9, sz: 20, fr: rnd(3), cave: true, caveX: W * .06, caveW: 128 },
+                { t: 'betta', x: W * .06 - 30, lane: .85, d: 1, sp: 0.6, sz: 35, fr: rnd(3), cave: true, caveX: W * .06, caveW: 145 },
+                { t: 'guppy', x: W * .06 + 20, lane: .90, d: -1, sp: 1.2, sz: 24, fr: rnd(3), cave: true, caveX: W * .06, caveW: 145 },
+                // Discussing Fishes (Right bottom side, facing each other)
+                { t: 'dory', x: W * .82, lane: .85, d: 1, sp: 0, sz: 35, fr: 0, discussing: true, discussingPartnerX: W * .86 },
+                { t: 'betta', x: W * .86, lane: .84, d: -1, sp: 0, sz: 40, fr: 0, discussing: true, discussingPartnerX: W * .82 }
             ];
         }
         function initAll() { mkStars(); mkBubs(); mkPlants(); mkRocks(); mkFish(); mkPearls(); mkClouds(); mkBirds(); mkCrabs(); mkDivers(); mkShells(); mkAnemones(); }
@@ -1039,7 +1045,11 @@
                 X.beginPath(); X.ellipse(0, s * .05, s * .53, s * .38, 0, 0, Math.PI * 2);
                 const fg = X.createLinearGradient(-s * .5, 0, s * .5, 0); fg.addColorStop(0, fc[0]); fg.addColorStop(.4, fc[1]); fg.addColorStop(1, fc[2]); X.fillStyle = fg; X.fill();
                 // Nuchal hump
-                X.beginPath(); X.ellipse(-s * .38, -s * .28, s * .25, s * .22, -.5, 0, Math.PI * 2); X.fillStyle = fc[1]; X.fill();
+                if (ci === 3) {
+                    X.beginPath(); X.ellipse(-s * .42, -s * .35, s * .35, s * .32, -.5, 0, Math.PI * 2); X.fillStyle = fc[1]; X.fill();
+                } else {
+                    X.beginPath(); X.ellipse(-s * .38, -s * .28, s * .25, s * .22, -.5, 0, Math.PI * 2); X.fillStyle = fc[1]; X.fill();
+                }
                 // Iridescent spots
                 X.fillStyle = 'rgba(255,255,255,.35)';[[-s * .1, -s * .1], [s * .1, s * .05], [-s * .2, s * .1], [s * .25, -s * .05]].forEach(([bx, by]) => { X.beginPath(); X.arc(bx, by, s * .08, 0, Math.PI * 2); X.fill() });
                 fin(-s * .1, -s * .37, s * .2, -s * .65, s * .45, -s * .37, fc[0] + 'aa');
@@ -1374,20 +1384,24 @@
             // Shells
             shells.forEach(sh => { sh.ph += .018; drawShell(sh.x, sh.ph); });
             // Pearls with open/close + breath bubbles
-            pearls.forEach((p) => {
+            pearls.forEach((p, i) => {
+                if (p.isGiant === undefined) p.isGiant = (i === 0);
                 p.ph += .015; p.bx = Math.sin(p.ph) * 4;
                 const py = H - 18 + Math.sin(p.ph * .7) * 3;
-                const pr = 5 + Math.sin(p.ph * 1.3) * 1.5;
+                const pr = p.isGiant ? 15 : 5 + Math.sin(p.ph * 1.3) * 1.5; // Giant pearl for first one
                 // Open/close cycle (period ~200 frames)
                 p.breathTimer++;
                 const openCycle = Math.sin(p.breathTimer * .032);
                 p.open = Math.max(0, openCycle);
-                if (p.open > .7 && p.breathTimer % 24 === 0) {
+                if (p.isGiant && p.open > .7 && p.breathTimer % 12 === 0) {
+                    // Emit big breath bubbles when fully open (giant pearl)
+                    bubs.push({ x: p.x + p.bx + rnd(10) - 5, y: py - pr - 4, r: rnd(4) + 3, sp: rnd(1.2) + .6, wb: rnd(Math.PI * 2), a: .65 });
+                } else if (!p.isGiant && p.open > .7 && p.breathTimer % 24 === 0) {
                     // Emit a tiny breath bubble when fully open
                     bubs.push({ x: p.x + p.bx, y: py - pr - 4, r: rnd(3) + 1.5, sp: rnd(.5) + .3, wb: rnd(Math.PI * 2), a: .55 });
                 }
                 // Draw shell halves
-                const shellOpen = p.open * 8; // max 8px gap
+                const shellOpen = p.open * (p.isGiant ? 16 : 8); // wider gap for giant
                 X.save();
                 X.translate(p.x + p.bx, py);
                 // bottom shell half
@@ -1400,7 +1414,7 @@
                 X.strokeStyle = '#5D4037'; X.lineWidth = 1; X.stroke();
                 // pearl inside
                 const pg = X.createRadialGradient(-pr * .3, -pr * .3, 0, 0, 0, pr);
-                pg.addColorStop(0, '#fff'); pg.addColorStop(.4, 'rgba(200,240,255,.9)'); pg.addColorStop(1, 'rgba(160,210,240,.6)');
+                pg.addColorStop(0, '#fff'); pg.addColorStop(.4, p.isGiant ? 'rgba(255,180,220,.9)' : 'rgba(200,240,255,.9)'); pg.addColorStop(1, p.isGiant ? 'rgba(240,140,180,.6)' : 'rgba(160,210,240,.6)');
                 X.beginPath(); X.arc(0, 0, pr * (.4 + p.open * .45), 0, Math.PI * 2); X.fillStyle = pg; X.fill();
                 X.restore();
             });
@@ -1412,16 +1426,16 @@
                 if (nemoGreetTimer === 55) {
                     fish.forEach(f => {
                         if (!f.greeter) return;
-                        const msg = f.expr === 'hi' ? 'Hello Buddy 👋' : 'Happy Keep Fishing! 🐟';
-                        greetBubbles.push({ x: f.x, y: f.gy * H - f.sz * .8, msg, a: 1, dy: -0.7, life: 0, expr: f.expr, phase: 1 });
+                        const msg = (f.t === 'nemo') ? 'Hello Buddy 👋' : 'Happy Keep Fishing! 🐟';
+                        greetBubbles.push({ x: f.x, y: f.gy * H - f.sz * .8, msg, a: 1, dy: -0.7, life: 0, expr: f.expr, phase: 1, type: f.t });
                     });
                 }
-                // Spawn 2nd bubble after 10 sec (600 frames)
-                if (nemoGreetTimer === 600) {
+                // Spawn 2nd bubble after ~500 frames (55 + 500 = 555)
+                if (nemoGreetTimer === 555) {
                     fish.forEach(f => {
                         if (!f.greeter) return;
-                        const msg = f.expr === 'hi' ? 'Have a Good Day! 😊' : 'Smile Please 😄';
-                        greetBubbles.push({ x: f.x, y: f.gy * H - f.sz * .8, msg, a: 1, dy: -0.6, life: 0, expr: f.expr, phase: 2 });
+                        const msg = (f.t === 'nemo') ? 'Have a Good Day! 😊' : 'Smile Please 😄';
+                        greetBubbles.push({ x: f.x, y: f.gy * H - f.sz * .8, msg, a: 1, dy: -0.6, life: 0, expr: f.expr, phase: 2, type: f.t });
                     });
                 }
                 if (nemoGreetTimer > 700) { nemoGreetState = 'idle'; }
@@ -1429,11 +1443,13 @@
             if (frame - nemoGreetAuto > 420 && nemoGreetState === 'idle') { triggerNemoGreet(); }
 
             // ── DRAW FRONT-FACE (greeting) ────────────────────────────────
-            function drawFrontFace(fx, fy, sz, expr, tw) {
+            function drawFrontFace(fx, fy, sz, expr, tw, type) {
                 X.save();
                 X.globalAlpha = 1; X.textAlign = 'left';
                 const s = sz;
-                if (expr === 'hi') {
+
+                // 1. Draw Body based on TYPE (nemo or tang)
+                if (type === 'nemo') {
                     // NEMO front body
                     X.beginPath(); X.ellipse(fx, fy, s * .5, s * .55, 0, 0, Math.PI * 2);
                     const bg = X.createRadialGradient(fx - s * .15, fy - s * .15, 0, fx, fy, s * .55);
@@ -1445,34 +1461,20 @@
                         X.beginPath(); X.arc(dx, fy, fdotSz[i], 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
                         X.beginPath(); X.arc(dx, fy, fdotSz[i], 0, Math.PI * 2); X.strokeStyle = 'rgba(0,0,0,.2)'; X.lineWidth = 1; X.stroke();
                     });
-                    [-1, 1].forEach(side => {
-                        const ex = fx + side * s * .22, ey = fy - s * .12;
-                        X.beginPath(); X.arc(ex, ey, s * .13, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
-                        X.beginPath(); X.arc(ex + side * s * .04, ey, s * .07, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
-                        X.beginPath(); X.arc(ex + side * s * .02 - s * .02, ey - s * .04, s * .025, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
-                    });
                     const wa = Math.sin(tw * 2.5) * .7;
                     [-1, 1].forEach(side => {
                         X.save(); X.translate(fx + side * s * .5, fy); X.rotate(side * (wa - .4));
                         X.beginPath(); X.ellipse(0, -s * .22, s * .1, s * .26, 0, 0, Math.PI * 2); X.fillStyle = 'rgba(255,120,0,.85)'; X.fill(); X.restore();
                     });
                     X.beginPath(); X.moveTo(fx - s * .25, fy - s * .5); X.quadraticCurveTo(fx, fy - s * .9, fx + s * .25, fy - s * .5); X.fillStyle = 'rgba(220,80,0,.75)'; X.fill();
-                    X.beginPath(); X.arc(fx, fy + s * .22, s * .22, 0, Math.PI); X.fillStyle = '#ff1744'; X.fill();
-                    X.beginPath(); X.arc(fx, fy + s * .22, s * .155, 0, Math.PI); X.fillStyle = 'white'; X.fill();
                 } else {
-                    // TANG front body — pure blue, NO yellow stripe
+                    // TANG front body
                     X.beginPath(); X.ellipse(fx, fy, s * .5, s * .55, 0, 0, Math.PI * 2);
                     const tbg = X.createRadialGradient(fx - s * .15, fy - s * .15, 0, fx, fy, s * .55);
                     tbg.addColorStop(0, '#42A5F5'); tbg.addColorStop(.6, '#1565C0'); tbg.addColorStop(1, '#0D47A1');
                     X.fillStyle = tbg; X.fill();
                     // White vertical center stripe
                     X.beginPath(); X.ellipse(fx, fy, s * .055, s * .52, 0, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.2)'; X.fill();
-                    [-1, 1].forEach(side => {
-                        const ex = fx + side * s * .22, ey = fy - s * .14;
-                        X.beginPath(); X.arc(ex, ey, s * .14, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
-                        X.beginPath(); X.arc(ex + side * s * .04, ey, s * .08, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
-                        X.beginPath(); X.arc(ex + side * s * .02 - s * .02, ey - s * .05, s * .03, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
-                    });
                     const wa = Math.sin(tw * 2.5) * .7;
                     [-1, 1].forEach(side => {
                         X.save(); X.translate(fx + side * s * .5, fy); X.rotate(side * (wa - .4));
@@ -1480,7 +1482,40 @@
                     });
                     X.beginPath(); X.moveTo(fx - s * .25, fy - s * .5); X.bezierCurveTo(fx, fy - s * .95, fx + s * .25, fy - s * .95, fx + s * .25, fy - s * .5); X.fillStyle = 'rgba(13,71,161,.75)'; X.fill();
                     [-1, 1].forEach(side => { X.beginPath(); X.ellipse(fx + side * s * .3, fy + s * .1, s * .1, s * .07, 0, 0, Math.PI * 2); X.fillStyle = 'rgba(100,150,255,.25)'; X.fill(); });
+                }
+
+                // 2. Draw EXPRESSION (eyes/mouth)
+                if (expr === 'surprise') {
+                    // Eyes wide open
+                    [-1, 1].forEach(side => {
+                        const ex = fx + side * s * .22, ey = fy - s * .18;
+                        X.beginPath(); X.arc(ex, ey, s * .16, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .02, ey, s * .08, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .01 - s * .01, ey - s * .06, s * .03, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
+                    });
+                    // Small 'O' mouth
+                    X.beginPath(); X.ellipse(fx, fy + s * .2, s * .08, s * .06, 0, 0, Math.PI * 2); X.fillStyle = '#600'; X.fill();
+                } else if (expr === 'smile') {
+                    // Happy eyes
+                    [-1, 1].forEach(side => {
+                        const ex = fx + side * s * .22, ey = fy - s * .14;
+                        X.beginPath(); X.arc(ex, ey, s * .14, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .04, ey, s * .08, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .02 - s * .02, ey - s * .05, s * .03, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
+                    });
+                    // Big wide smile
                     X.beginPath(); X.arc(fx, fy + s * .24, s * .2, 0, Math.PI); X.strokeStyle = 'rgba(0,0,80,.7)'; X.lineWidth = 2.5; X.stroke();
+                } else {
+                    // Default 'hi' expression
+                    [-1, 1].forEach(side => {
+                        const ex = fx + side * s * .22, ey = fy - s * .12;
+                        X.beginPath(); X.arc(ex, ey, s * .13, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .04, ey, s * .07, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
+                        X.beginPath(); X.arc(ex + side * s * .02 - s * .02, ey - s * .04, s * .025, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
+                    });
+                    // Open mouth
+                    X.beginPath(); X.arc(fx, fy + s * .22, s * .22, 0, Math.PI); X.fillStyle = '#ff1744'; X.fill();
+                    X.beginPath(); X.arc(fx, fy + s * .22, s * .155, 0, Math.PI); X.fillStyle = 'white'; X.fill();
                 }
                 X.restore();
             }
@@ -1489,6 +1524,47 @@
             fish.forEach(f => {
                 f.fr += .05;
                 if (f.greeter) {
+                    // Click/Hover check for Hide-and-Seek
+                    const fyCalc = f.curY || f.gy * H;
+                    let distToMouse = Math.hypot(hideTargetX - f.x, hideTargetY - fyCalc);
+
+                    if (f.forceHideTimer && f.forceHideTimer > 0) {
+                        f.forceHideTimer--;
+                        // During forced hide from a click, manage the "watch" phase
+                        f.hiding = true;
+
+                        if (f.forceHideTimer > 200) { // Fast move behind form (e.g. 15 frames if initialized at 215)
+                            // First 15 frames: swim behind form (hiding completely)
+                            f.peekW = 0;
+                        } else if (f.forceHideTimer > 20) { // Watch for 180 frames (approx 3 seconds)
+                            // Middle frames: peek out to "watch"
+                            f.peekW = f.sz * 0.45; // showing just the front face/eye
+                        } else { // Last 20 frames for phase 3
+                            // Last 20 frames: coming back out
+                            f.hiding = false;
+                        }
+
+                        if (f.forceHideTimer === 0) {
+                            // Finished hiding/peeking, switch to a BIG smile!
+                            f.expr = 'smile';
+                            f.smileTimer = 200; // smile for ~3-4 seconds when coming back out
+                            f.peekW = undefined; // Reset peek width
+                        }
+                    } else if (distToMouse < f.sz * 3.5) {
+                        // Regular hover peek-a-boo
+                        f.hiding = true;
+                        f.peekW = f.sz * 0.45; // peek out
+                    } else {
+                        f.hiding = false;
+                        if (f.smileTimer && f.smileTimer > 0) {
+                            f.smileTimer--;
+                            f.expr = 'smile';
+                        } else {
+                            f.expr = (f.t === 'nemo') ? 'hi' : 'hi2'; // return to default greeting face
+                            f.peekW = undefined; // Ensure peekW is reset when not hiding
+                        }
+                    }
+
                     const isGreeting = nemoGreetState !== 'idle';
                     if (isGreeting) {
                         // Swim toward greeting X smoothly
@@ -1496,7 +1572,7 @@
                         const gy = f.gy * H + Math.sin(nemoWave * 2) * 10;
                         const turnPct = Math.min(1, nemoGreetTimer / 50);
                         if (turnPct > 0.7) {
-                            drawFrontFace(f.x, gy, f.sz, f.expr, nemoWave);
+                            drawFrontFace(f.x, gy, f.sz, f.expr, nemoWave, f.t);
                         } else {
                             X.save(); X.translate(f.x, gy);
                             X.scale(f.gside * turnPct * -1, 1);
@@ -1506,49 +1582,48 @@
                     } else {
                         // FREE SWIM or HIDING (peek-a-boo)
                         if (f.hiding) {
-                            // Swim toward hide edge (right side for nemo = left screen edge)
-                            const hideX = f.expr === 'hi' ? f.sz * .45 : W - f.sz * .45;
-                            f.x += (hideX - f.x) * .09;
+                            // Form edge peek logic
+                            const formEdgeLeft = W * .5 - 190;
+                            const formEdgeRight = W * .5 + 190;
+                            const isLeftFish = f.expr === 'hi' || f.expr === 'smile'; // Nemo is generally left
+
+                            // f.peekW controls how much fish is showing.
+                            // If it's 0, it hides completely. If 0.45, it peeks.
+                            let currentPeekW = f.peekW !== undefined ? f.peekW : f.sz * 0.45;
+
+                            const hideX = isLeftFish ? formEdgeLeft + f.sz * 0.5 - currentPeekW : formEdgeRight - f.sz * 0.5 + currentPeekW;
+                            const hidingDir = isLeftFish ? -1 : 1; // Face outward from the form
+
+                            // Faster interpolation to dart behind the form quickly
+                            f.x += (hideX - f.x) * .18;
                             const fy = f.curY || f.gy * H;
                             f.curY = fy;
-                            const peekW = f.sz * 0.55; // visible sliver from edge
 
                             X.save();
-                            // Clip to the peeking strip at the screen edge
-                            if (f.expr === 'hi') {
-                                // Nemo peeks from LEFT edge
-                                X.rect(0, 0, peekW, H); X.clip();
-                                X.save(); X.translate(f.x, fy); drawFish(f, f.fr); X.restore();
-                                // Draw eye in absolute canvas coords
-                                const ex = peekW - 4, ey = fy - f.sz * .1;
-                                const blink = frame % 140 < 133;
-                                X.beginPath(); X.arc(ex, ey, f.sz * .15, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
-                                if (blink) {
-                                    X.beginPath(); X.arc(ex + 3, ey, f.sz * .08, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
-                                    X.beginPath(); X.arc(ex + 5, ey - f.sz * .04, f.sz * .03, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
-                                    // Cheeky eyebrow
-                                    X.beginPath(); X.moveTo(ex - f.sz * .1, ey - f.sz * .22); X.quadraticCurveTo(ex, ey - f.sz * .26, ex + f.sz * .1, ey - f.sz * .2);
-                                    X.strokeStyle = 'rgba(180,80,0,.8)'; X.lineWidth = 2; X.stroke();
-                                } else {
-                                    // Blink - closed
-                                    X.beginPath(); X.moveTo(ex - f.sz * .1, ey); X.lineTo(ex + f.sz * .1, ey);
-                                    X.strokeStyle = '#1a1a2e'; X.lineWidth = 3; X.stroke();
-                                }
+                            // Clip everything inside the form's region, leaving only the outer sliver visible
+                            if (isLeftFish) {
+                                X.rect(0, 0, formEdgeLeft, H); X.clip();
                             } else {
-                                // Tang peeks from RIGHT edge
-                                X.rect(W - peekW, 0, peekW, H); X.clip();
-                                X.save(); X.translate(f.x, fy); drawFish(f, f.fr); X.restore();
-                                const ex = W - peekW + 4, ey = fy - f.sz * .1;
+                                X.rect(formEdgeRight, 0, W - formEdgeRight, H); X.clip();
+                            }
+
+                            X.save(); X.translate(f.x, fy);
+                            // Force fish to face outward for the peek-a-boo
+                            let oldD = f.d; f.d = hidingDir;
+                            f._scaleApplied = true; X.scale(-f.d, 1);
+
+                            // Draw the fish
+                            drawFish(f, f.fr);
+
+                            f._scaleApplied = false; f.d = oldD;
+                            X.restore();
+
+                            // Bubbles if watching
+                            if (currentPeekW > 0) {
                                 const blink = frame % 140 < 133;
-                                X.beginPath(); X.arc(ex, ey, f.sz * .15, 0, Math.PI * 2); X.fillStyle = 'white'; X.fill();
-                                if (blink) {
-                                    X.beginPath(); X.arc(ex - 3, ey, f.sz * .08, 0, Math.PI * 2); X.fillStyle = '#1a1a2e'; X.fill();
-                                    X.beginPath(); X.arc(ex - 5, ey - f.sz * .04, f.sz * .03, 0, Math.PI * 2); X.fillStyle = 'rgba(255,255,255,.9)'; X.fill();
-                                    X.beginPath(); X.moveTo(ex - f.sz * .1, ey - f.sz * .22); X.quadraticCurveTo(ex, ey - f.sz * .26, ex + f.sz * .1, ey - f.sz * .2);
-                                    X.strokeStyle = 'rgba(0,50,150,.8)'; X.lineWidth = 2; X.stroke();
-                                } else {
-                                    X.beginPath(); X.moveTo(ex - f.sz * .1, ey); X.lineTo(ex + f.sz * .1, ey);
-                                    X.strokeStyle = '#1a1a2e'; X.lineWidth = 3; X.stroke();
+                                if (blink && frame % 40 === 0) {
+                                    const bx = isLeftFish ? f.x - f.sz * .4 : f.x + f.sz * .4;
+                                    bubs.push({ x: bx, y: fy - f.sz * .2, r: 2 + rnd(2), sp: 1 + rnd(1.5), wb: rnd(Math.PI), a: .8 });
                                 }
                             }
                             X.restore();
@@ -1564,20 +1639,42 @@
                             X.save(); X.translate(f.x, fy); drawFish(f, f.fr); X.restore();
                         }
                     }
+                } else if (f.discussing) {
+                    // Discussing fishes: stay roughly in place, gently bobbing, blow small "speech bubbles" occasionally
+                    f.curY = f.lane * H + Math.sin(frame * 0.03 + f.x) * 10;
+                    X.save(); X.translate(f.x, f.curY);
+                    if (f.d === -1) { f._scaleApplied = true; X.scale(-1, 1); }
+                    // Slight rotation as if talking
+                    X.rotate(Math.sin(frame * 0.05 + f.fr * 2) * 0.1);
+                    drawFish(f, f.fr);
+                    X.restore();
+
+                    // Discussing bubbles 
+                    // Alternate speaking
+                    const isSpeaking = (frame % 240 < 120 && f.d === 1) || (frame % 240 >= 120 && f.d === -1);
+                    if (isSpeaking && frame % 45 === 0) {
+                        bubs.push({ x: f.x + (f.d * f.sz * .4), y: f.curY - f.sz * .2, r: 1.5 + rnd(1.5), sp: .5 + rnd(1.5), wb: rnd(Math.PI), a: .9 });
+                    }
                 } else if (f.cave) {
                     // Cave fish: bounce inside the coral arch area
-                    f.x += f.sp * f.d;
+                    let currentSp = f.sp;
+                    if (f.dartTimer > 0) { currentSp = f.sp * 6; f.dartTimer--; }
+                    f.x += currentSp * f.d;
                     const cw2 = (f.caveW || 150);
                     const cx = f.caveX || W * .5;
                     if (f.d === 1 && f.x > cx + cw2) { f.d = -1; }
                     else if (f.d === -1 && f.x < cx - cw2) { f.d = 1; }
                     const fy2 = f.lane * H + Math.sin(f.fr * 1.1) * 18;
+                    f.curY = fy2;
                     X.save(); X.translate(f.x, fy2); drawFish(f, f.fr); X.restore();
                 } else {
-                    f.x += f.sp * f.d;
+                    let currentSp = f.sp;
+                    if (f.dartTimer > 0) { currentSp = f.sp * 5; f.dartTimer--; }
+                    f.x += currentSp * f.d;
                     // More pronounced vertical undulation (up/down swimming)
                     const undulate = Math.sin(f.fr * .7) * 18 + Math.sin(f.fr * 1.3) * 6;
                     const fy2 = f.lane * H + undulate;
+                    f.curY = fy2;
                     if (f.d === 1 && f.x > W + 220) { f.x = -180; f.lane = .55 + rnd(.4); }
                     else if (f.d === -1 && f.x < -220) { f.x = W + 180; f.lane = .55 + rnd(.4); }
                     X.save(); X.translate(f.x, fy2); drawFish(f, f.fr); X.restore();
@@ -1592,23 +1689,23 @@
                 if (gb.life > 18) gb.a -= 0.012; // slow fade after 18 frames up
                 if (gb.a <= 0) return;
                 X.save(); X.globalAlpha = gb.a;
-                const isHi = gb.expr === 'hi';
-                const bw = isHi ? 160 : 210, bh = 44, br = 22;
+                const isNemo = gb.type === 'nemo';
+                const bw = isNemo ? 160 : 210, bh = 44, br = 22;
                 const bx = gb.x - bw * .5, by = gb.y - bh;
                 // Bubble fill
                 const bgg = X.createLinearGradient(bx, by, bx, by + bh);
-                if (isHi) { bgg.addColorStop(0, 'rgba(15,22,55,.92)'); bgg.addColorStop(1, 'rgba(20,35,80,.82)'); }
+                if (isNemo) { bgg.addColorStop(0, 'rgba(15,22,55,.92)'); bgg.addColorStop(1, 'rgba(20,35,80,.82)'); }
                 else { bgg.addColorStop(0, '#b8b06a'); bgg.addColorStop(1, '#7a7028'); }
                 X.beginPath(); X.roundRect(bx, by, bw, bh, br); X.fillStyle = bgg; X.fill();
                 X.beginPath(); X.roundRect(bx, by, bw, bh, br);
-                X.strokeStyle = isHi ? 'rgba(100,130,220,.7)' : 'rgba(210,185,60,.9)'; X.lineWidth = 2; X.stroke();
+                X.strokeStyle = isNemo ? 'rgba(100,130,220,.7)' : 'rgba(210,185,60,.9)'; X.lineWidth = 2; X.stroke();
                 // Gloss
                 X.beginPath(); X.roundRect(bx + 3, by + 3, bw - 6, bh * .35, br - 2); X.fillStyle = 'rgba(255,255,255,.15)'; X.fill();
                 // Tail (pointing down toward fish)
                 X.beginPath(); X.moveTo(gb.x - 8, by + bh); X.lineTo(gb.x, by + bh + 16); X.lineTo(gb.x + 8, by + bh);
-                X.closePath(); X.fillStyle = isHi ? 'rgba(15,22,55,.9)' : '#9a9040'; X.fill();
+                X.closePath(); X.fillStyle = isNemo ? 'rgba(15,22,55,.9)' : '#9a9040'; X.fill();
                 // Text
-                X.fillStyle = isHi ? '#ffffff' : '#1a1200';
+                X.fillStyle = isNemo ? '#ffffff' : '#1a1200';
                 X.font = `bold 15px Inter,sans-serif`; X.textAlign = 'center';
                 X.fillText(gb.msg, gb.x, by + bh * .62);
                 X.restore();
@@ -1617,7 +1714,7 @@
             // Sea divers
             divers.forEach(dv => {
                 dv.fr += .04; dv.x += dv.sp * dv.d;
-                if (dv.d === 1 && dv.x > W + 100) { dv.x = -100; dv.y = .58 + rnd(.25); }
+                if (dv.x > W + 100) { dv.x = -100; dv.y = .58 + rnd(.25); }
                 if (dv.d === -1 && dv.x < -100) { dv.x = W + 100; dv.y = .58 + rnd(.25); }
                 const dy = dv.y * H + Math.sin(dv.fr * .5) * 14;
                 X.save(); X.translate(dv.x, dy); drawDiver(dv); X.restore();
@@ -1704,6 +1801,15 @@
 
         // ── HIDE FORM LOGIC (Peek at aquarium) ──
         let autoShowConfig = null;
+
+        // Auto show form after 21 seconds on initial load
+        let initialLoadTimer = setTimeout(() => {
+            const wrap = document.getElementById('form-wrap');
+            if (wrap.classList.contains('hidden-form')) {
+                toggleFormHide();
+            }
+        }, 21000);
+
         function toggleFormHide() {
             const wrap = document.getElementById('form-wrap');
             const btn = document.getElementById('hide-toggle');
@@ -1712,6 +1818,7 @@
                 wrap.classList.remove('hidden-form');
                 btn.innerHTML = '👁️ Watch Fish';
                 if (autoShowConfig) clearTimeout(autoShowConfig);
+                if (initialLoadTimer) clearTimeout(initialLoadTimer); // Cancel initial timer if user manually interacted
             } else {
                 // Hide form
                 wrap.classList.add('hidden-form');
@@ -1725,40 +1832,128 @@
             }
         }
 
-        // ── PEEK-A-BOO: canvas click hides greeter fish, mousemove reveals ──
-        let lastPeekAct = 0;
+        // ── PEEK-A-BOO: hover hides greeter fish, click makes others dart away ──
+        let hideTargetX = -1000, hideTargetY = -1000;
+
+        let canvasReturnClicks = 0;
+
         C.addEventListener('click', e => {
             const rect = C.getBoundingClientRect();
             const mx = (e.clientX - rect.left) * (W / rect.width);
             const my = (e.clientY - rect.top) * (H / rect.height);
+
+            // Handle global clicks to return darting fish
+            const dartingFishes = fish.filter(f => f.dartingFree);
+            if (dartingFishes.length > 0) {
+                canvasReturnClicks++;
+                if (canvasReturnClicks >= 2) {
+                    // Return darting fishes to greeting spot
+                    dartingFishes.forEach(f => {
+                        f.dartingFree = false;
+                        f.greeter = true;
+                        f.wasGreeter = false;
+                        f.sp = f.originalSp || f.sp;
+                        f.hiding = false;
+                        f.forceHideTimer = 0;
+                        f.smileTimer = 0;
+                        f.expr = (f.t === 'nemo') ? 'hi' : 'hi2';
+
+                        // Re-calculate target spot in case window resized
+                        const wW = window.innerWidth;
+                        f.gx = f.gside === 1 ? wW * .33 : wW * .66;
+
+                        // Fast swim back
+                        f.x = f.gx;
+                    });
+                    canvasReturnClicks = 0;
+
+                    // Automatically say hello again
+                    nemoGreetState = 'idle';
+                    triggerNemoGreet();
+                }
+            }
+
+            fish.forEach(f => {
+                const fy = f.curY || (f.gy ? f.gy * H : f.lane * H);
+                const dist = Math.hypot(mx - f.x, my - fy);
+                if (dist < f.sz * 1.5) {
+                    if (f.greeter) {
+                        // Click forces the peek-a-boo hiding state for 3.5 seconds (215 frames total)
+                        f.hiding = true;
+                        f.forceHideTimer = 215;
+                        f.expr = 'surprise'; // Change expression to surprise
+                    } else {
+                        // Dart away playfully
+                        f.dartTimer = 45;
+                        f.d = (mx > f.x) ? -1 : 1; // swim away from click
+                        // Pop out some bubbles
+                        for (let i = 0; i < 4; i++) {
+                            bubs.push({ x: f.x + rnd(20) - 10, y: fy, r: 2 + rnd(4), sp: 1 + rnd(2), wb: rnd(Math.PI), a: 1 });
+                        }
+                    }
+                }
+            });
+        });
+
+        // Double Click to send Greeter fish into fast free-swim mode
+        C.addEventListener('dblclick', e => {
+            const rect = C.getBoundingClientRect();
+            const mx = (e.clientX - rect.left) * (W / rect.width);
+            const my = (e.clientY - rect.top) * (H / rect.height);
+
             fish.forEach(f => {
                 if (!f.greeter) return;
-                const fy = f.curY || f.gy * H;
-                const dist = Math.hypot(mx - f.x, my - fy);
-                if (dist < f.sz * 1.3) {
-                    f.hiding = true;
-                    lastPeekAct = Date.now(); // lock hide state briefly
+                const fyCalc = f.curY || f.gy * H;
+                if (Math.hypot(mx - f.x, my - fyCalc) < f.sz * 3.5) {
+                    // Un-greet them into darting mode
+                    f.originalSp = f.sp;
+                    f.greeter = false;
+                    f.dartingFree = true;
+                    f.wasGreeter = true;
+                    f.sp = 5; // swim fast!
+
+                    // Cancel hiding if they were doing peekaboo
+                    f.hiding = false;
+                    f.forceHideTimer = 0;
+                    f.peekW = undefined;
+                    f.smileTimer = 0;
+
+                    // Assign a wild free-swim lane
+                    f.lane = .55 + rnd(.4);
+                    f.dy = 0;
+
+                    // Burst of bubbles on escape
+                    for (let b = 0; b < 5; b++) bubs.push({ x: f.x, y: fyCalc, r: 2 + rnd(4), sp: 1 + rnd(1), wb: rnd(Math.PI), a: .8 });
                 }
             });
         });
         C.addEventListener('mousemove', e => {
-            if (Date.now() - lastPeekAct < 1500) return; // give it 1.5s to hide before mouse can cancel
-            fish.forEach(f => {
-                if (!f.greeter || !f.hiding) return;
-                f.hiding = false; // mouse move anywhere → fish comes back
-            });
+            const rect = C.getBoundingClientRect();
+            hideTargetX = (e.clientX - rect.left) * (W / rect.width);
+            hideTargetY = (e.clientY - rect.top) * (H / rect.height);
         });
+        C.addEventListener('mouseleave', () => { hideTargetX = -1000; hideTargetY = -1000; });
         C.addEventListener('touchstart', e => {
             const rect = C.getBoundingClientRect();
             const touch = e.touches[0];
             const mx = (touch.clientX - rect.left) * (W / rect.width);
             const my = (touch.clientY - rect.top) * (H / rect.height);
+            hideTargetX = mx; hideTargetY = my; // Set hover for touch devices
+
             fish.forEach(f => {
-                if (!f.greeter) return;
-                const fy = f.curY || f.gy * H;
+                const fy = f.curY || (f.gy ? f.gy * H : f.lane * H);
                 if (Math.hypot(mx - f.x, my - fy) < f.sz * 1.5) {
-                    f.hiding = true;
-                    lastPeekAct = Date.now();
+                    if (f.greeter) {
+                        f.hiding = true;
+                        f.forceHideTimer = 215; // fast hide + 3 seconds of lock on touch
+                        f.expr = 'surprise';
+                    } else {
+                        f.dartTimer = 45;
+                        f.d = (mx > f.x) ? -1 : 1;
+                        for (let i = 0; i < 4; i++) {
+                            bubs.push({ x: f.x + rnd(20) - 10, y: fy, r: 2 + rnd(4), sp: 1 + rnd(2), wb: rnd(Math.PI), a: 1 });
+                        }
+                    }
                 }
             });
         }, { passive: true });
