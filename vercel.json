@@ -53,18 +53,18 @@
             ]
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/register",
-            "dest": "/api/register.js"
+            "source": "/api/register",
+            "destination": "/api/register.js"
         },
         {
-            "src": "/api/reset",
-            "dest": "/api/reset.js"
+            "source": "/api/reset",
+            "destination": "/api/reset.js"
         },
         {
-            "src": "/(.*)",
-            "dest": "/index.html"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
